@@ -1,5 +1,22 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Folder Structure
+src
+  components
+    Authentication  -- Login, Logout, Signup
+    Navigation      -- Nagivation, PrivateRoute (authentication needed to use PrivateRoute, if no token, redirects to login)
+    Profile         -- Profile
+    Restaurants     -- AddRestaurant, Restaurants, Restaurant, editRestaurant
+    Reviews         -- AddReview, Reviews, Review, editReview
+  hooks
+    useLocalStorage -- (used to save information in local storage)
+  utils
+    authAxios       -- (used to a authenticate users when interacting with the data from the server (Create, Update, Delete))
+    
+## Packages installed
+
+yarn add axios, react-router-dom
+
 ## Available Scripts
 
 In the project directory, you can run:
