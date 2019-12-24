@@ -1,8 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Folder Structure
-src
-  components
+components
     
     Authentication  -- Login, Logout, Signup
     
@@ -13,12 +12,12 @@ src
     Restaurants     -- AddRestaurant, Restaurants, Restaurant, editRestaurant
     
     Reviews         -- AddReview, Reviews, Review, editReview
-  
-  hooks
+
+hooks
     
     useLocalStorage -- (used to save information in local storage)
   
-  utils
+utils
     
     authAxios       -- (used to a authenticate users when interacting with the data from the server (Create, Update, Delete))
     
