@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.nav-flex {
+  display: flex;
+  background-color: grey;
+}
+
+.far-right {
+  display: flex;
+  justify-content: flex-end;
+}
