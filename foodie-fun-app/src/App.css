@@ -43,13 +43,3 @@
   align-items: center;
   padding: 0.5rem;
 }
-
-.nav-flex {
-  display: flex;
-  background-color: grey;
-}
-
-.far-right {
-  display: flex;
-  justify-content: flex-end;
-}
