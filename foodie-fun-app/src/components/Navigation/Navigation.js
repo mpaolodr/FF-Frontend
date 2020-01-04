@@ -15,12 +15,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  Container
 } from 'reactstrap';
 
 export const Navigation = () => {
@@ -32,7 +27,8 @@ export const Navigation = () => {
 	return (
 
 		<div>
-			<Navbar color="white" light expand="md">
+			<Navbar color="white" light expand="sm">
+				<Container fluid={true}>
 				<NavbarBrand>
 					<RouteLink className="text-dark" to="/">
 						<i className="fas fa-utensils fa-2x"></i>
@@ -40,7 +36,7 @@ export const Navigation = () => {
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
-					<Nav className="mr-auto" navbar>
+					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<RouteLink className="text-dark nav-column" to="/profile">
 							<div><i className="far fa-user-circle"></i></div>Profile
@@ -68,6 +64,7 @@ export const Navigation = () => {
 						</NavItem>
 					</Nav>
 				</Collapse>
+				</Container>
 			</Navbar>
 				<Route exact path="/" />
 				<Route path="/profile" component={Profile} />
