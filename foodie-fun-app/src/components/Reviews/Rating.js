@@ -28,7 +28,7 @@ const getHalfStarStyles = (color, uniqueness) => {
   }`
 }
 
-class ReactStars extends Component {
+export class ReactStars extends Component {
 
   constructor(props) {
 
@@ -252,5 +252,3 @@ ReactStars.defaultProps = {
 
   onChange: () => { }
 };
-
-export default ReactStars
