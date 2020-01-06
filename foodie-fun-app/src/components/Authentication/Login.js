@@ -34,6 +34,7 @@ export const Login = () => {
         <button type = "submit">Submit</button>
       </form>
       
+      <Link to = "/signup">Create an account</Link>
     </div>
   );
 };
