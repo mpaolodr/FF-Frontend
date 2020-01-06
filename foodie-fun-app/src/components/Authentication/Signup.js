@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
+//loader component
+import Loader from "./Loader";
+
 export const Signup = () => {
+  //loader animation
+  const [loaderState, setLoaderState] = useState({ loading: false });
+
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
     return yup.mixed().test({
@@ -57,39 +63,50 @@ export const Signup = () => {
   //submit handler
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log(data);
+    setLoaderState({ loading: true });
+
+    setTimeout(() => {
+      setLoaderState({ loading: false });
+      console.log(data);
+    }, 2000);
     //this is where axios call would be made
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Sign-Up</h1>
-      <div className="ind-field">
-        <label htmlFor="email">Email</label>
-        <input name="email" type="email" ref={register} />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
+    <div className="form-container">
+      {loaderState.loading ? (
+        <Loader />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Sign-Up</h1>
+          <div className="ind-field">
+            <label htmlFor="email">Email</label>
+            <input name="email" type="email" ref={register} />
+            {errors.email && <p>{errors.email.message}</p>}
+          </div>
 
-      <div className="ind-field">
-        <label htmlFor="username">Username</label>
-        <input type="text" name="username" ref={register} />
-        {errors.username && <p>{errors.username.message}</p>}
-      </div>
+          <div className="ind-field">
+            <label htmlFor="username">Username</label>
+            <input type="text" name="username" ref={register} />
+            {errors.username && <p>{errors.username.message}</p>}
+          </div>
 
-      <div className="ind-field">
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" ref={register} />
-        {errors.password && <p>{errors.password.message}</p>}
-      </div>
+          <div className="ind-field">
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" ref={register} />
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
 
-      <div className="ind-field">
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input type="password" name="confirmPassword" ref={register} />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-      </div>
+          <div className="ind-field">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" ref={register} />
+            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+          </div>
 
-      <button type="submit">Submit</button>
-    </form>
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
   );
 };
