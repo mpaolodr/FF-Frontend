@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { 
 	Collapse,
@@ -10,7 +11,29 @@ import {
   	ButtonGroup
 } from 'reactstrap';
 
+
+
 export const FilterSearch = (props) => {
+
+	// const [searchRestaurant, setSearchRestaurant] = useState("")
+	// const [searchResults, setSearchResults] = useState(data);
+	// const handleChange = event => {
+	// 	setSearchRestaurant(event.target.value);
+	// };
+
+	// useEffect(() => {
+	// 	axios.get('API GOES HERE')
+	// 	.then( res => {
+	// 		console.log(res.data)
+	// 		const result = restaurant.filter( business => {
+	// 			return business.restaurant.toLowerCase().includes(searchRestaurant.toLowerCase())
+	// 		})
+	// 	})
+	// },[searchRestaurant])
+
+	// useEffect(() => {
+	// 	return restaurant_name.toLowerCase().includes(searchRestaurant.toLowerCase())
+	// },[searchResults])
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +55,7 @@ export const FilterSearch = (props) => {
 		<div>
 			<Row>
 			<Col md={{ size: 6, offset: 3 }} xs={{ size: 6 }}>
-			<Input style={{fontFamily: 'FontAwesome'}} type="text" name="search" id="search" placeholder="&#xF002; restaurants or food" />
+			<Input style={{fontFamily: 'FontAwesome'}} type="text" name="search" id="search" placeholder="&#xF002; Restaurants or Food" />
 			</Col>
 			<Col>
 			<ButtonToggle color="secondary" size="small" onClick={toggle} outline><i class="fas fa-filter"> Filters</i></ButtonToggle>{' '}
@@ -62,6 +85,12 @@ export const FilterSearch = (props) => {
 	        </Col>
 	   		</Row>
 	        </Collapse>   
+			{/* {searchResults && searchResults.map( item => (
+				<div>
+					<h4>{item.restaurant_name}</h4>
+
+				</div>
+			))} */}
 		</div>
 	);
 };
