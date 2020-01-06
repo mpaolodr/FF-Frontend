@@ -5,6 +5,7 @@ import { Link, Route } from "react-router-dom";
 import { Container, Button, Badge } from "reactstrap";
 
 import { Restaurant, RestaurantCard } from "./index";
+import { FilterSearch } from "../FilterSearch";
 
 // MARK: -- fake data
 import { data } from "../../restaurantData.js";
@@ -54,6 +55,7 @@ export const Restaurants = () => {
 	return (
 		<div>
 			<Container>
+				<FilterSearch />
 				<h1>Restaurants</h1>
 				<p>Can search through the restaurants</p>
 				<p>Can add restaurant to list</p>

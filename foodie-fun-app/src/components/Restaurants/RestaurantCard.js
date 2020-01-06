@@ -10,7 +10,7 @@ export const RestaurantCard = (props) => {
 	return (
 		<Card>
 			<Row>
-				<Col xs="4">
+				<Col lg="2" xs="5">
 					<CardImg width="100%" src="food.svg" alt="Card image cap" className="img-thumbnail rounded float-right" />
 				</Col>
 				<CardBody>
