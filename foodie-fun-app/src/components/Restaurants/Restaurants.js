@@ -1,13 +1,13 @@
 import React from "react";
 
-// MARK: -- third party
+// MARK: -- Third Party Packages
 import { Link, Route } from "react-router-dom";
 import { Container, Button, Badge } from "reactstrap";
 
 import { Restaurant, RestaurantCard } from "./index";
 import { FilterSearch } from "../FilterSearch";
 
-// MARK: -- fake data
+// MARK: -- Fake Data
 import { data } from "../../restaurantData.js";
 
 export const Restaurants = () => {

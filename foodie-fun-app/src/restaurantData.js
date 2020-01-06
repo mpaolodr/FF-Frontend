@@ -70,7 +70,7 @@ export const data = [
 			{ Sat: [ { opening: 9, closing: 15 } ] },
 		],
 		rating: {
-			total_ratings: 20,
+			total_ratings: 3,
 			average_rating: 4.15,
 			menu_item: {
 				name: "Tom Kai",
@@ -88,3 +88,45 @@ export const data = [
 		}
 	},
 ];
+
+export const restaurantDetail = [
+	{
+	restaurant_id: 0,
+	restaurant_name: "Some name",
+	categories: ["Diner", "American"],
+	locations: [
+		{
+			street_number: "1234",
+			street_name: "South Main Street",
+			zip_code: 99999,
+			coordinates: {
+				longitude: 123049123.1231,
+				latitude: 2349123102.11230
+			},
+		}
+	],
+	rating: {
+		total_ratings: 3,
+		average_rating: 4.15,
+		reviews: [
+			{
+				user_id: 0,
+				username: "Kimbo Slice",
+				menu_item: {
+					name: "Chicken Noodle Soup",
+					photo: null,
+					price: "$9.00",
+					item_rating: 4,
+					average_item_rating: 3.5,
+					review: "Delicious! It melted in my mouth!"
+				},
+				service: {
+					service_rating: 4,
+					review: "Peter was great and made the process quick and easy",
+				},
+				overall_review: "The ambience is great",
+			}
+		],
+	}
+	}
+] 
