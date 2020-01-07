@@ -113,7 +113,15 @@ const SubmitBtn = styled.button`
 //Component
 
 export const AddReview = () => {
-  const { handleSubmit, register, errors, reset, control } = useForm();
+  const { handleSubmit, register, errors, reset, control } = useForm({
+    defaultValues: {
+      cuisineType: "",
+      menuName: "",
+      price: "",
+      rating: 0,
+      review: ""
+    }
+  });
 
   const onSubmit = (values, e) => {
     e.preventDefault();
