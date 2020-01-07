@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ReactStars } from ".";
-import { Review } from ".";
+import { ReviewTable } from ".";
 
 import { Container, Row, Col, Table, Card, CardBody } from "reactstrap";
 
@@ -64,7 +64,7 @@ export const Reviews = () => {
 			</Card>
 			<br/>
 			<br/>
-			<Review name={name} />
+			<ReviewTable name={name} />
 			</Container>
 	);
 };
