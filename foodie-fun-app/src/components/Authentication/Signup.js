@@ -110,6 +110,8 @@ const BottomText = styled.p`
 export const Signup = () => {
   //loader animation
   const [loaderState, setLoaderState] = useState({ loading: false });
+  //user
+  const [user, setUser] = useState({});
 
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
@@ -169,20 +171,23 @@ export const Signup = () => {
 
     setTimeout(() => {
       setLoaderState({ loading: false });
-      console.log(data);
     }, 2000);
+
+    setUser(data);
+    console.log(data);
+
     //this is where axios call would be made
     reset();
   };
 
   return (
-    <FormContainer className="form-container">
+    <FormContainer>
       {loaderState.loading ? (
         <Loader />
       ) : (
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Heading>Sign-Up</Heading>
-          <IndField className="ind-field">
+          <IndField>
             <Label htmlFor="email">Email</Label>
             <InputField name="email" type="email" ref={register} />
             {errors.email && (
@@ -190,7 +195,7 @@ export const Signup = () => {
             )}
           </IndField>
 
-          <IndField className="ind-field">
+          <IndField>
             <Label htmlFor="username">Username</Label>
             <InputField type="text" name="username" ref={register} />
             {errors.username && (
@@ -198,7 +203,7 @@ export const Signup = () => {
             )}
           </IndField>
 
-          <IndField className="ind-field">
+          <IndField>
             <Label htmlFor="password">Password</Label>
             <InputField type="password" name="password" ref={register} />
             {errors.password && (
@@ -206,7 +211,7 @@ export const Signup = () => {
             )}
           </IndField>
 
-          <IndField className="ind-field">
+          <IndField>
             <Label htmlFor="confirmPassword">Confirm Password</Label>
             <InputField type="password" name="confirmPassword" ref={register} />
             {errors.confirmPassword && (
