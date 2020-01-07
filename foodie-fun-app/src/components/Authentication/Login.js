@@ -1,73 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap'
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
-import styled from 'styled-components';
+import styled from "styled-components";
+import Loader from "./Loader";
 
 //styled components
 const Container = styled.div`
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   margin: auto;
   display: flex;
-  justify-content: space-around;
-`
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background: rgba(24, 18, 18, 0.8);
+  width: 30%;
+  height: 50%;
+`;
+
+const HeaderWrapper = styled.h1`
+  color: #e8964a;
+  font-size: 2.5rem;
+  margin-bottom: 5%;
+`;
+
 const Error = styled.p`
-  color: red;
-  margin-bottom: 0px;
-`
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  color: #fff;
+
+  &:before {
+    content: "⚠ ";
+    display: inline;
+  }
+`;
+
+const InputWrapper = styled.div`
+  width: 80%;
+  position: relative;
+`;
 
 const Text = styled.p`
-  color: #E8964A;
+  color: #e8964a;
   margin-bottom: 0px;
-`
+`;
 
 const Inputs = styled.input`
-  margin-bottom: 5%;
-  border: 0px solid white;
   width: 100%;
-  padding: 2% 20%;
-  padding-left: 0px
-  border-radius: 2px;
-`
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10%;
+`;
 
 const SubmitButton = styled.button`
-  width: 250px
-  padding: 5%;
-  margin: 5% 0;
-  background-color: #C45228;
-  color: white;
+  width: 30%;
+  padding: 5px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  background: #c45228;
+  border: 0.5px solid #c45228;
   border-radius: 10px;
-  border: 0px solid white;
-`
+  transition: all 0.5s;
 
+  &:hover {
+    background: #fff;
+    color: #c45228;
+    transition: all 0.5s;
+  }
+`;
 
 //component
 export const Login = () => {
+  const [login, setLogin] = useState({});
+  const [loaderState, setLoaderState] = useState({ loading: false });
 
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, reset, errors } = useForm();
 
   const onSubmit = (values, e) => {
     e.preventDefault();
-    // console.log(values);
-  }
-  console.log(errors);
+    setLoaderState({ loading: true });
 
-  //Pressing enter after hitting the submit button crashes the page.
+    setTimeout(() => {
+      setLoaderState({ loading: false });
+    }, 2000);
+
+    setLogin(values);
+    e.target.reset();
+  };
 
   return (
     <Container>
-      <FormWrapper>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="email"><Text>Email</Text></label><br></br>
+      {loaderState.loading ? (
+        <Loader />
+      ) : (
+        <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+          <HeaderWrapper>Log In</HeaderWrapper>
+          <InputWrapper>
+            <label htmlFor="email">
+              <Text>Email</Text>
+            </label>
+            <br></br>
             <Inputs
               type="text"
               placeholder="Enter email"
@@ -75,42 +123,55 @@ export const Login = () => {
               ref={register({
                 required: true,
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
                 }
               })}
             />
-            {errors.email && errors.email.type === 'required' && <Error>Please enter an email</Error>}
-            {errors.email && errors.email.type === 'pattern' && <Error>Invalid Email</Error>}
-          </div>
+            {errors.email && errors.email.type === "required" && (
+              <Error>Please enter an email</Error>
+            )}
+            {errors.email && errors.email.type === "pattern" && (
+              <Error>Invalid Email</Error>
+            )}
+          </InputWrapper>
 
-          <div>
-            <label htmlFor="password"><Text>password</Text></label><br></br>
+          <InputWrapper>
+            <label htmlFor="password">
+              <Text>password</Text>
+            </label>
+            <br></br>
             <Inputs
-              type="text"
+              type="password"
               placeholder="Enter password"
               name="password"
               ref={register({
                 required: true,
                 maxLength: {
-                  value: 18,
+                  value: 18
                 },
                 minLength: {
-                  value: 3,
+                  value: 3
                 }
-              })
-              }
+              })}
             />
-            {errors.password && errors.password.type == 'required' && <Error>Please enter a password</Error>}
-            {errors.password && errors.password.type == 'maxLength' && <Error>Password is too long</Error>}
-            {errors.password && errors.password.type == 'minLength' && <Error>Password is too short</Error>}
-          </div>
+            {errors.password && errors.password.type == "required" && (
+              <Error>Please enter a password</Error>
+            )}
+            {errors.password && errors.password.type == "maxLength" && (
+              <Error>Password is too long</Error>
+            )}
+            {errors.password && errors.password.type == "minLength" && (
+              <Error>Password is too short</Error>
+            )}
+          </InputWrapper>
 
-          <SubmitButton type = "submit">Log in</SubmitButton>
-          <h2><Text>Don't have an account?</Text></h2>
+          <SubmitButton type="submit">Log in</SubmitButton>
+          <h2>
+            <Text>Don't have an account?</Text>
+          </h2>
           <Link to="/signup">Create an account</Link>
-        </form>
-
-      </FormWrapper>
+        </FormWrapper>
+      )}
     </Container>
   );
 };

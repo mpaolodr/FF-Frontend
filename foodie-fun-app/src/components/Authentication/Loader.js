@@ -1,5 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { TweenMax } from "gsap";
+import styled from "styled-components";
+
+//styled-components
+const WaitText = styled.h3`
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+`;
 
 const Loader = () => {
   const first = useRef(null);
@@ -30,7 +38,7 @@ const Loader = () => {
         <circle ref={third} cx="94.3" cy="16.6" r="16.1" fill="#e8964a" />
         <circle ref={fourth} cx="133.4" cy="16.6" r="16.1" fill="#ecb847" />
       </svg>
-      <h3>Please Wait...</h3>
+      <WaitText>Please Wait...</WaitText>
     </div>
   );
 };

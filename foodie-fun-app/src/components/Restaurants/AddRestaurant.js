@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 
 export const AddRestaurant = () => {
+
 	const [addRestaurant, setAddRestaurant] = useState({resturant: "", cuisine: "", location: "", hours: "" })
 
 	// const addRestaurant = e => {
@@ -58,3 +59,4 @@ export const AddRestaurant = () => {
 		</div>
 	);
 };
+
