@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Review } from "../Reviews";
+import { ReviewTable } from "../Reviews";
 
 // MARK: -- Third Party Packages
 import { Button, Container, Row, Col } from "reactstrap";
@@ -32,7 +32,7 @@ export const Profile = (props) => {
 					<p><i class="fas fa-comment"></i> 4 reviews</p>
 				</Col>
 			</Row>
-			<Review name={name} edit={isEditable}/>
+			<ReviewTable name={name} edit={isEditable}/>
 		</Container>
 		);
 };
