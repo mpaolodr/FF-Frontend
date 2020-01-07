@@ -169,9 +169,9 @@ export const Signup = () => {
 
     setTimeout(() => {
       setLoaderState({ loading: false });
-      console.log(data);
     }, 2000);
     //this is where axios call would be made
+    console.log(data);
     reset();
   };
 
