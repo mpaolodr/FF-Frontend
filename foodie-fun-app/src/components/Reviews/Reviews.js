@@ -6,8 +6,12 @@ import { Review } from ".";
 import { Container, Row, Col, Table, Card, CardBody } from "reactstrap";
 
 export const Reviews = () => {
+
+	const name = "User name"
+
 	return (
 		<Container>
+		<br/>
 		<Row>
 				<Col>
 					<h2>
@@ -15,7 +19,7 @@ export const Reviews = () => {
 					</h2>
 				</Col>
 				<Col xs={{ offset: 3 }}>
-					<h5><i class="fas fa-star text-warning"></i> 3.00 | 20 reviews</h5>
+					<h5><i class="fas fa-star text-warning"></i> 3.00 | 4 reviews</h5>
 				</Col>			
 			</Row>
 			<Card xs={{ size: 10, offset: 2 }}>
@@ -25,15 +29,15 @@ export const Reviews = () => {
 					<tbody>
 						<tr>
 							<th scope="row">Food</th>
-							<td><ReactStars count={5} size={24} value={1.5}/></td>
+							<td><ReactStars count={5} size={24} value={1.5} edit={false}/></td>
 						</tr>
 						<tr>
 							<th scope="row">Drinks</th>
-							<td><ReactStars count={5} size={24} value={4}/></td>
+							<td><ReactStars count={5} size={24} value={4} edit={false}/></td>
 						</tr>
 						<tr>
 							<th scope="row">Service</th>
-							<td><ReactStars count={5} size={24} value={5}/></td>
+							<td><ReactStars count={5} size={24} value={5} edit={false}/></td>
 						</tr>
 					</tbody>
 				</Table>
@@ -43,22 +47,24 @@ export const Reviews = () => {
 					<tbody>
 						<tr>
 							<th scope="row">Decor</th>
-							<td><ReactStars count={5} size={24} value={4.5}/></td>
+							<td><ReactStars count={5} size={24} value={4.5} edit={false}/></td>
 						</tr>
 						<tr>
 							<th scope="row">Cleaniness</th>
-							<td><ReactStars count={5} size={24} value={3}/></td>
+							<td><ReactStars count={5} size={24} value={3} edit={false}/></td>
 						</tr>
 						<tr>
 							<th scope="row">Vibe</th>
-							<td><ReactStars count={5} size={24} value={2}/></td>
+							<td><ReactStars count={5} size={24} value={2} edit={false}/></td>
 						</tr>
 					</tbody>
 				</Table>
 			</Col>
 			</Row>
 			</Card>
-			<Review />
+			<br/>
+			<br/>
+			<Review name={name} />
 			</Container>
 	);
 };
