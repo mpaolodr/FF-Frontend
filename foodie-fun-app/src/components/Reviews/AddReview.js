@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import ReactStars from "react-stars";
 import styled from "styled-components";
 import backgroundImg from "../Authentication/assets/signup-bg-2.svg";
@@ -104,12 +104,16 @@ const SubmitBtn = styled.button`
     color: #c45228;
     transition: all 0.5s;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 //Component
 
 export const AddReview = () => {
-  const { handleSubmit, register, errors, reset } = useForm();
+  const { handleSubmit, register, errors, reset, control } = useForm();
 
   const onSubmit = (values, e) => {
     e.preventDefault();
@@ -156,7 +160,7 @@ export const AddReview = () => {
         </IndField>
 
         <IndField>
-          <Label htmlFor="foodPicture">"Picture of your food (optional)"</Label>
+          <Label htmlFor="foodPicture">Picture of your food (optional)</Label>
           <InputField type="file" name="foodPic" id="foodPic" />
         </IndField>
 
@@ -178,22 +182,28 @@ export const AddReview = () => {
 
         <IndField>
           <Label htmlFor="rating">Rating</Label>
-          <ReactStars
+          <Controller
+            as={<ReactStars count={5} size={24} color2={"#ffd700"} />}
             name="rating"
             id="rating"
-            value={5}
+            control={control}
+            ref={register({ required: true })}
+          />
+          {/* <ReactStars
+            name="rating"
+            id="rating"
             count={5}
             size={24}
             color2={"#ffd700"}
             ref={register({ required: true })}
-          />
+          /> */}
           {errors.rating && errors.rating.type === "required" && (
             <ErrorMessage>This field is required</ErrorMessage>
           )}
         </IndField>
 
         <IndField>
-          <Label htmlFor="review">"Review (optional)"</Label>
+          <Label htmlFor="review">Review (optional)</Label>
           <ReviewField id="review" name="review" rows="50"></ReviewField>
         </IndField>
 
