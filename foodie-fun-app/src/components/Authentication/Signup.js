@@ -177,6 +177,7 @@ export const Signup = () => {
     console.log(data);
 
     //this is where axios call would be made
+    console.log(data);
     reset();
   };
 
