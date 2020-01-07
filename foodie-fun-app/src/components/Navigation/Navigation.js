@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PrivateRoute from "./PrivateRoute";
 import { Signup, Login, Logout } from "../Authentication";
 import { Profile } from "../Profile";
-import { Restaurants, Restaurant, AddRestaurant } from "../Restaurants";
+import { Restaurants, Restaurant, AddRestaurant, EditRestaurant } from "../Restaurants";
 import { AddReview, EditReview } from "../Reviews";
 import { NavLink as RouteLink, Route } from "react-router-dom";
 
@@ -71,11 +71,13 @@ export const Navigation = () => {
 				<Route path="/profile" component={Profile} />
 				<Route path="/add-restaurant" component={AddRestaurant} />
 				<Route path="/add-review" component={AddReview} />
+				<Route path="/edit-restaurant" render={props => {return <EditRestaurant {...props} />}}/>
+				<Route path="/edit-review" render={props => {return <EditReview {...props} />}}/>
 				<Route exact path="/explore" render={props => {return <Restaurants {...props} />}}/>
 				<Route path="/explore/1" render={props => { return <Restaurant {...props} /> }} />
 				<Route path="/login" render={props => {return <Login {...props} />}}/>
 				<Route path="/signup" render={props => {return <Signup {...props} />}}/>
-				<Route path="/logout" component={Logout} />
+				<PrivateRoute path="/logout" />
 		</div>
 
 	)
