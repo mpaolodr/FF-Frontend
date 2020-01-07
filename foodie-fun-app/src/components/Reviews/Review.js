@@ -4,7 +4,7 @@ import { Container, Row, Col, ToastHeader, ToastBody, Table, Media } from "react
 
 export const Review = (props) => {
 
-	const { name } = props
+	const { name, edit } = props
 
 	return (
 		<Container>
@@ -20,7 +20,7 @@ export const Review = (props) => {
 									</Link>
 									<Media body>
 										<Media heading>
-											{name}
+											{name} {edit ? <Link to="/edit-review"><i class="fas fa-edit"></i></Link> : ""}
 										</Media>
 										The restaurant is gorgeous and located approximately 15 minutes from the quaint, little town of Brux. 
 										The space is spacious and includes all the food and drinks you would need for a relaxing night.
@@ -39,7 +39,7 @@ export const Review = (props) => {
 											</Media>
 											<Media body>
 												<Media heading>
-													{name}
+													{name} {edit ? <Link to="/edit-review"><i class="fas fa-edit"></i></Link> : ""}
 												</Media>
 												The restaurant is gorgeous and located approximately 15 minutes from the quaint, little town of Brux. 
 												The space is spacious and includes all the food and drinks you would need for a relaxing night.
@@ -60,7 +60,7 @@ export const Review = (props) => {
 											</Media>
 											<Media body>
 												<Media heading>
-													{name}
+													{name} {edit ? <Link to="/edit-review"><i class="fas fa-edit"></i></Link> : ""}
 												</Media>
 												The restaurant is gorgeous and located approximately 15 minutes from the quaint, little town of Brux. 
 												The space is spacious and includes all the food and drinks you would need for a relaxing night. 
@@ -81,7 +81,7 @@ export const Review = (props) => {
 									</Media>
 									<Media body>
 										<Media heading>
-											{name}
+											{name} {edit ? <Link to="/edit-review"><i class="fas fa-edit"></i></Link> : ""}
 										</Media>
 										It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
 										The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 
