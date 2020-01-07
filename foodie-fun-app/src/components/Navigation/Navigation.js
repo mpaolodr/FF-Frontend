@@ -76,7 +76,7 @@ export const Navigation = () => {
 				<Route path="/explore/1" render={props => { return <Restaurant {...props} /> }} />
 				<Route path="/login" render={props => {return <Login {...props} />}}/>
 				<Route path="/signup" render={props => {return <Signup {...props} />}}/>
-				<Route path="/logout" component={Logout} />
+				<PrivateRoute path="/logout" />
 		</div>
 
 	)

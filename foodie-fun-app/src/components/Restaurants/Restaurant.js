@@ -11,6 +11,7 @@ export const Restaurant = (props) => {
 	return (
 		<Container>
 			<h1>Restaurant Name (Detail Page)</h1>
+			<h6>Location</h6>
 			<Row>
 			<Col xs={{ size: 'auto' }}>
 				<Link to="/edit-restaurant"><Button color="" outline><i class="fas fa-edit"></i> restaurant</Button></Link>
