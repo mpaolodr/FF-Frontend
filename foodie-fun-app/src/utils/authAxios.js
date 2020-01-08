@@ -5,7 +5,7 @@ import useLocalStorage from "../hooks/useLocalStorage.js";
 export const authAxios = () => {
 	const token = useLocalStorage("foodieToken", "");
 	return axios.create({
-		baseURL: 'http://localhost:5000/api',
+		baseURL: 'https://rayfoodiefun.herokuapp.com/api',
 		headers: {
 			Authorization: token
 		}
