@@ -1,9 +1,9 @@
 import React from "react";
 
-import { ReactStars } from ".";
 import { ReviewTable } from ".";
 
-import { Container, Row, Col, Table, Card } from "reactstrap";
+// MARK: -- Third Party Libraries
+import { Container, Row, Col, Table, Card, Badge } from "reactstrap";
 
 export const Reviews = () => {
 
@@ -11,14 +11,12 @@ export const Reviews = () => {
 
 	return (
 		<Container>
-		<br/>
-		<Row>
-				<Col>
-					<h2>
-						Reviews
-					</h2>
+			<br/>
+			<Row>
+				<Col xs={{ size: 'auto' }}>
+					<h5>Hours <Badge color="success">Open</Badge></h5>
 				</Col>
-				<Col xs={{ offset: 3 }}>
+				<Col xs={{ size: 'auto', offset: 4 }} sm={{ offset: 5 }} md={{ offset: 7 }} lg={{ offset: 8 }}>
 					<h5><i class="fas fa-star text-warning"></i> 3.00 | 4 reviews</h5>
 				</Col>			
 			</Row>
@@ -28,16 +26,16 @@ export const Reviews = () => {
 				<Table borderless>
 					<tbody>
 						<tr>
-							<th scope="row">Food</th>
-							<td><ReactStars count={5} size={24} value={1.5} edit={false}/></td>
+							<th scope="row">Mon</th>
+							<td><Badge color="light">9AM-4PM</Badge></td>
 						</tr>
 						<tr>
-							<th scope="row">Drinks</th>
-							<td><ReactStars count={5} size={24} value={4} edit={false}/></td>
+							<th scope="row">Tue</th>
+							<td><Badge color="light">9AM-4PM</Badge></td>
 						</tr>
 						<tr>
-							<th scope="row">Service</th>
-							<td><ReactStars count={5} size={24} value={5} edit={false}/></td>
+							<th scope="row">Wed</th>
+							<td><Badge color="warning">9AM-4PM</Badge></td>
 						</tr>
 					</tbody>
 				</Table>
@@ -46,16 +44,20 @@ export const Reviews = () => {
 				<Table borderless>
 					<tbody>
 						<tr>
-							<th scope="row">Decor</th>
-							<td><ReactStars count={5} size={24} value={4.5} edit={false}/></td>
+							<th scope="row">Thu</th>
+							<td><Badge color="light">9AM-4PM</Badge></td>
 						</tr>
 						<tr>
-							<th scope="row">Cleaniness</th>
-							<td><ReactStars count={5} size={24} value={3} edit={false}/></td>
+							<th scope="row">Fri</th>
+							<td><Badge color="ligth">9AM-4PM</Badge></td>
 						</tr>
 						<tr>
-							<th scope="row">Vibe</th>
-							<td><ReactStars count={5} size={24} value={2} edit={false}/></td>
+							<th scope="row">Sat</th>
+							<td><Badge color="light">9AM-4PM</Badge></td>
+						</tr>
+						<tr>
+							<th scope="row">Sun</th>
+							<td><Badge color="light">9AM-4PM</Badge></td>
 						</tr>
 					</tbody>
 				</Table>

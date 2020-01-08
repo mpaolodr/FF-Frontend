@@ -103,9 +103,16 @@ const RestaurantRating = {
 
 // CHECK
 const User = {
-	id: UUID,
+	id: 0,
 	username: "Jimmy Wales",
 	email: "Jimmy@wiki.org",
 	password: "difficultpassword",
+	location: "Los Angeles",
 	reviews: [restaurantReviews]
+}
+
+const Restaurant = {
+	id: 0,
+	name: "Minnie's",
+	type: ["G"]
 }
