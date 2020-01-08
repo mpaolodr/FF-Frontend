@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import ReactStars from "react-stars";
+import { ReactStars } from ".";
 import styled from "styled-components";
 import backgroundImg from "../Authentication/assets/signup-bg-2.svg";
 
