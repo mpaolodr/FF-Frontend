@@ -3,7 +3,7 @@ import React from "react";
 import { ReactStars } from ".";
 import { ReviewTable } from ".";
 
-import { Container, Row, Col, Table, Card, CardBody } from "reactstrap";
+import { Container, Row, Col, Table, Card } from "reactstrap";
 
 export const Reviews = () => {
 
