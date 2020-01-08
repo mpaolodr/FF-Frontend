@@ -118,38 +118,9 @@ const BottomText = styled.p`
 export const Signup = () => {
   //loader animation
   const [loaderState, setLoaderState] = useState({ loading: false });
+
   //user
-  const [user, setUser] = useState({});
-
-  //location
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [local, setLocal] = useState("");
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
-  
-  useEffect(() => {
-    console.log(local)
-    if(local === "") {
-      axios.get(url)
-           .then(response => {
-              setLocal(response.data.results[0].address_components[3].long_name)
-           })
-           .catch(error => console.warn("error", error))
-    }
-  }, [url, local])
-
-  const getLocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoordinates);
-    } else {
-      alert("Geolocation is not supported in this browsers");
-    }
-  }
-
-  const getCoordinates = (position) => {
-    setLongitude(position.coords.longitude);
-    setLatitude(position.coords.latitude);
-  }
+  const [user, setUser] = useState();
 
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
@@ -183,7 +154,7 @@ export const Signup = () => {
     password: yup
       .string()
       .min(6, "Password not long enough")
-      .required(),
+      .required("This field is required"),
 
     location: yup
       .string()
@@ -196,7 +167,7 @@ export const Signup = () => {
   });
 
   //useForm
-  const { handleSubmit, errors, register, reset, setValue } = useForm({
+  const { handleSubmit, errors, register, reset } = useForm({
     validationSchema: schema,
     defaultValues: {
       email: "",
@@ -207,6 +178,37 @@ export const Signup = () => {
     }
   });
 
+  //location
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [local, setLocal] = useState("");
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
+
+  useEffect(() => {
+    console.log(local);
+    if (local === "") {
+      axios
+        .get(url)
+        .then(response => {
+          setLocal(response.data.results[0].address_components[3].long_name);
+        })
+        .catch(error => console.warn("error", error));
+    }
+  }, [url, local]);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates);
+    } else {
+      alert("Geolocation is not supported in this browsers");
+    }
+  };
+
+  const getCoordinates = position => {
+    setLongitude(position.coords.longitude);
+    setLatitude(position.coords.latitude);
+  };
+
   //submit handler
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -216,13 +218,17 @@ export const Signup = () => {
       setLoaderState({ loading: false });
     }, 2000);
 
-    setUser(data);
-    console.log(data);
-
+    setUser({
+      email: data.email,
+      username: data.username,
+      password: data.password,
+      location: data.location
+    });
     //this is where axios call would be made
-    console.log(data);
     reset();
   };
+
+  console.log(user);
 
   return (
     <FormContainer>
@@ -266,12 +272,19 @@ export const Signup = () => {
 
           <IndField>
             <Label htmlFor="location">Location</Label>
-            <InputField type="text" name="location" ref={register} value={local} />
+            <InputField
+              type="text"
+              name="location"
+              ref={register}
+              value={local}
+            />
             {errors.location && (
               <ErrorMessage>{errors.location.message}</ErrorMessage>
             )}
           </IndField>
-          <Button onClick={getLocation}><i class="fas fa-location-arrow"></i></Button>
+          <Button onClick={getLocation}>
+            <i class="fas fa-location-arrow"></i>
+          </Button>
 
           <SubmitBtn type="submit">Submit</SubmitBtn>
           <BottomText>
