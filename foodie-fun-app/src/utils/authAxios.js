@@ -1,13 +1,14 @@
 import axios from "axios";
-import useLocalStorage from "../hooks/useLocalStorage.js";
+import React, { useState } from "react";
 
 // MARK: - Axios using authentication for authenticated users
 export const authAxios = () => {
-	const token = useLocalStorage("foodieToken", "");
+	const token = window.localStorage.getItem("foodieToken");
 	return axios.create({
-		baseURL: 'https://rayfoodiefun.herokuapp.com/api',
+		baseURL: 'https://cors-anywhere.herokuapp.com/https://rayfoodiefun.herokuapp.com/api',
 		headers: {
-			Authorization: token
-		}
+			"Content-Type": "application/json",
+			Authorization: token,
+		},
 	});
 };
