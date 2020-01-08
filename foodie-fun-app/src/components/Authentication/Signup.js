@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+
+// MARK: -- Third Party Libraries
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
+import { Button } from "reactstrap";
+import Geolocation from "react-geolocation";
+
+// MARK: -- assets
 import backgroundImg from "./assets/signup-bg-2.svg";
 
 //loader component
@@ -234,6 +240,18 @@ export const Signup = () => {
             </Link>{" "}
             now!
           </BottomText>
+
+          <Geolocation
+            render={({
+              fetchingPosition,
+              position: { coords: { latitude, longitude } = {} } = {},
+              error,
+              getCurrentPosition
+            }) =>
+            <div>
+              <Button color="warning" onClick={getCurrentPosition}><i class="fas fa-location-arrow"></i></Button>
+            </div>}
+          />
         </Form>
       )}
     </FormContainer>
