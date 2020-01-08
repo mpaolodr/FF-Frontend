@@ -4,7 +4,7 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import { Container, Button, Badge } from "reactstrap";
 
-import { Restaurant, RestaurantCard } from "./index";
+import { Restaurant, RestaurantCard } from ".";
 import { FilterSearch } from "../FilterSearch";
 
 // MARK: -- Fake Data

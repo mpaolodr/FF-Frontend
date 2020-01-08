@@ -7,9 +7,6 @@ import * as serviceWorker from './serviceWorker';
 // MARK: -- Third party libraries
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router } from "react-router-dom";
-import mapboxgl from "mapbox-gl";
-
-mapboxgl.accessToken = 'pk.eyJ1IjoidGNsb2htIiwiYSI6ImNqMDMwM3N3azA4N2cycWxzOXRxc2ExenQifQ.LNWEYTdZW2YaurDIgqXJtg';
 
 ReactDOM.render(
 	<Router>

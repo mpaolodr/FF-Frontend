@@ -10,12 +10,12 @@ export const RestaurantCard = (props) => {
 	return (
 		<Card>
 			<Row>
-				<Col lg="2" xs="5">
+				<Col xs={{ size: 10, offset: 1 }} md={{ size: 3, offset: 0 }} lg={{ size: 2 }}>
 					<CardImg width="100%" src="food.svg" alt="Card image cap" className="img-thumbnail rounded float-right" />
 				</Col>
 				<CardBody>
 					<Row>
-						<Col xs="6">
+						<Col xs={{ size: 6 }}>
 							<CardTitle><h2>{name}</h2></CardTitle>
 							<CardSubtitle>{location(id)}</CardSubtitle>
 						</Col>

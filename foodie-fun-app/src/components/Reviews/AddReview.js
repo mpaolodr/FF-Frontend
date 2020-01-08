@@ -251,7 +251,7 @@ export const AddReview = () => {
         </IndField>
 
         <IndField>
-          <Label htmlFor="review">Review (optional)</Label>
+          <Label htmlFor="review">Review</Label>
           <ReviewField id="review" name="review" rows="50"></ReviewField>
         </IndField>
 

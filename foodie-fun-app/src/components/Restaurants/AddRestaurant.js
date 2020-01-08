@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Axios from "axios";
+//import axios from "axios";
 
 export const AddRestaurant = () => {
 
 	const [addRestaurant, setAddRestaurant] = useState({resturant: "", cuisine: "", location: "", hours: "" })
 
 	// const addRestaurant = e => {
-	// 	Axios.post("api goes here")
+	// 	axios.post("api goes here")
 	// 	.then(res => {
 	// 		console.log(res.data)
 	// 	})

@@ -16,7 +16,7 @@ export const Reviews = () => {
 				<Col xs={{ size: 'auto' }}>
 					<h5>Hours <Badge color="success">Open</Badge></h5>
 				</Col>
-				<Col xs={{ size: 'auto', offset: 4 }} sm={{ offset: 5 }} md={{ offset: 7 }} lg={{ offset: 8 }}>
+				<Col xs={{ size: 'auto' }} sm={{ offset: 3 }} md={{ offset: 6 }} lg={{ offset: 7 }} xl={{ offset: 8 }}>
 					<h5><i class="fas fa-star text-warning"></i> 3.00 | 4 reviews</h5>
 				</Col>			
 			</Row>
