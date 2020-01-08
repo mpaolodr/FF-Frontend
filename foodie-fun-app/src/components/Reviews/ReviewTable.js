@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Table, Media } from "reactstrap";
+import { Container, Table } from "reactstrap";
 
 import { ReviewTableCell } from ".";
 

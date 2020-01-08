@@ -159,13 +159,13 @@ export const Login = () => {
                 }
               })}
             />
-            {errors.password && errors.password.type == "required" && (
+            {errors.password && errors.password.type === "required" && (
               <Error>Please enter a password</Error>
             )}
-            {errors.password && errors.password.type == "maxLength" && (
+            {errors.password && errors.password.type === "maxLength" && (
               <Error>Password is too long</Error>
             )}
-            {errors.password && errors.password.type == "minLength" && (
+            {errors.password && errors.password.type === "minLength" && (
               <Error>Password is too short</Error>
             )}
           </InputWrapper>
