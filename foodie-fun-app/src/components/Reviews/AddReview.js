@@ -72,21 +72,6 @@ const InputField = styled.input`
   }
 `;
 
-const InputFieldMoney = styled.input`
-  width: 100%;
-  padding: 5px 10px;
-  border-radius: 5px;
-
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='15px' width='85px'><text x='2' y='13' fill='black' font-size='16' font-family='arial'>$</text></svg>");
-  background-repeat: no-repeat;
-  background-position: left center;
-  padding-left: 12px;
-
-  ::placeholder {
-    font-style: italic;
-  }
-`;
-
 const ReviewField = styled.textarea`
   border-radius: 5px;
   resize: vertical;
@@ -145,10 +130,8 @@ export const AddReview = () => {
 
   const onSubmit = (values, e) => {
     e.preventDefault();
-    console.log(values);
     reset();
   };
-  //   console.log(errors);
 
   return (
     <FormContainer>
@@ -200,19 +183,11 @@ export const AddReview = () => {
 
         <IndField>
           <Label htmlFor="price">Price</Label>
-          {/* <InputFieldMoney
-            type="number"
-            name="price"
-            id="price"
-            placeholder="How much did your meal cost?"
-            ref={register({
-              required: true
-            })}
-          /> */}
           <Controller
             as={
               <ReactStars
                 className="react-stars"
+                value={2}
                 half={false}
                 char={"\u0024"}
                 count={5}
@@ -238,7 +213,7 @@ export const AddReview = () => {
                 count={5}
                 size={24}
                 color2={"#ffd700"}
-                ref={register({ required: true })}
+                ref={register({ required: true, name: "rating" })}
               />
             }
             name="rating"
