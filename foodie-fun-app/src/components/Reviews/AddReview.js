@@ -243,7 +243,12 @@ export const AddReview = () => {
 
         <IndField>
           <Label htmlFor="review">Review</Label>
-          <ReviewField id="review" name="review" rows="50"></ReviewField>
+          <ReviewField
+            id="review"
+            name="review"
+            rows="50"
+            ref={register}
+          ></ReviewField>
         </IndField>
 
         <SubmitBtn type="submit">Add Review</SubmitBtn>
