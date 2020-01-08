@@ -66,6 +66,25 @@ const InputField = styled.input`
   width: 100%;
   padding: 5px 10px;
   border-radius: 5px;
+
+  ::placeholder {
+    font-style: italic;
+  }
+`;
+
+const InputFieldMoney = styled.input`
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='15px' width='85px'><text x='2' y='13' fill='black' font-size='16' font-family='arial'>$</text></svg>");
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 12px;
+
+  ::placeholder {
+    font-style: italic;
+  }
 `;
 
 const ReviewField = styled.textarea`
@@ -119,7 +138,8 @@ export const AddReview = () => {
       menuName: "",
       price: "",
       rating: 0,
-      review: ""
+      review: "",
+      foodPic: ""
     }
   });
 
@@ -168,13 +188,19 @@ export const AddReview = () => {
         </IndField>
 
         <IndField>
-          <Label htmlFor="foodPicture">Picture of your food (optional)</Label>
-          <InputField type="file" name="foodPic" id="foodPic" />
+          <Label htmlFor="foodPic">Picture of your food (optional)</Label>
+          <InputField
+            type="file"
+            name="foodPic"
+            id="foodPic"
+            accept="image/*"
+            ref={register}
+          />
         </IndField>
 
         <IndField>
           <Label htmlFor="price">Price</Label>
-          <InputField
+          {/* <InputFieldMoney
             type="number"
             name="price"
             id="price"
@@ -182,6 +208,22 @@ export const AddReview = () => {
             ref={register({
               required: true
             })}
+          /> */}
+          <Controller
+            as={
+              <ReactStars
+                className="react-stars"
+                half={false}
+                char={"\u0024"}
+                count={5}
+                size={24}
+                color2={"#ffd700"}
+                ref={register}
+              />
+            }
+            name="price"
+            id="price"
+            control={control}
           />
           {errors.price && errors.price.type === "required" && (
             <ErrorMessage>This field is required</ErrorMessage>
@@ -191,20 +233,18 @@ export const AddReview = () => {
         <IndField>
           <Label htmlFor="rating">Rating</Label>
           <Controller
-            as={<ReactStars count={5} size={24} color2={"#ffd700"} />}
+            as={
+              <ReactStars
+                count={5}
+                size={24}
+                color2={"#ffd700"}
+                ref={register({ required: true })}
+              />
+            }
             name="rating"
             id="rating"
             control={control}
-            ref={register({ required: true })}
           />
-          {/* <ReactStars
-            name="rating"
-            id="rating"
-            count={5}
-            size={24}
-            color2={"#ffd700"}
-            ref={register({ required: true })}
-          /> */}
           {errors.rating && errors.rating.type === "required" && (
             <ErrorMessage>This field is required</ErrorMessage>
           )}
