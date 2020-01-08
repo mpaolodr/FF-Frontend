@@ -119,9 +119,6 @@ export const Signup = () => {
   //loader animation
   const [loaderState, setLoaderState] = useState({ loading: false });
 
-  //user
-  const [user, setUser] = useState();
-
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
     return yup.mixed().test({
@@ -218,17 +215,16 @@ export const Signup = () => {
       setLoaderState({ loading: false });
     }, 2000);
 
-    setUser({
+    //this object will be sent through axios
+    console.log({
       email: data.email,
       username: data.username,
       password: data.password,
       location: data.location
     });
-    //this is where axios call would be made
+
     reset();
   };
-
-  console.log(user);
 
   return (
     <FormContainer>
