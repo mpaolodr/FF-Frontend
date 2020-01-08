@@ -13,7 +13,11 @@ import { Provider } from "react-redux";
 import logger from "redux-logger";
 
 
+//const store = createStore()
+
+
 ReactDOM.render(
+	
 	<Router>
 		<App />
 	</Router>,
