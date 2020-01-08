@@ -200,15 +200,6 @@ export const AddReview = () => {
 
         <IndField>
           <Label htmlFor="price">Price</Label>
-          {/* <InputFieldMoney
-            type="number"
-            name="price"
-            id="price"
-            placeholder="How much did your meal cost?"
-            ref={register({
-              required: true
-            })}
-          /> */}
           <Controller
             as={
               <ReactStars

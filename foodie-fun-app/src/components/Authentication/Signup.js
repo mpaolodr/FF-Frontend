@@ -272,19 +272,24 @@ export const Signup = () => {
 
           <IndField>
             <Label htmlFor="location">Location</Label>
-            <InputField
-              type="text"
-              name="location"
-              ref={register}
-              value={local}
-            />
-            {errors.location && (
-              <ErrorMessage>{errors.location.message}</ErrorMessage>
-            )}
+            <div className="btn-location">
+              <InputField
+                type="text"
+                name="location"
+                ref={register}
+                value={local}
+              />
+              {errors.location && (
+                <ErrorMessage>{errors.location.message}</ErrorMessage>
+              )}
+              <Button onClick={getLocation}>
+                <i class="fas fa-location-arrow"></i>
+              </Button>
+            </div>
           </IndField>
-          <Button onClick={getLocation}>
+          {/* <Button onClick={getLocation}>
             <i class="fas fa-location-arrow"></i>
-          </Button>
+          </Button> */}
 
           <SubmitBtn type="submit">Submit</SubmitBtn>
           <BottomText>
