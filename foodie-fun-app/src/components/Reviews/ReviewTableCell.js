@@ -2,7 +2,7 @@ import React from "react";
 
 // MARK: -- Third Party Library
 import { Link } from "react-router-dom";
-import { Table, Media } from "reactstrap";
+import { Table, Media, Button } from "reactstrap";
 import styled from "styled-components";
 
 const Psmall = styled.p`
@@ -35,7 +35,7 @@ export const ReviewTableCell = (props) => {
 					</Link>
 					<Media body>
 						<Media heading>
-							{name} {edit ? <Link to="/edit-review"><i class="fas fa-edit"></i></Link> : <div><Pbold>Avocado Toast<Spansmall> <i class="fas fa-star text-warning"></i> 4.50</Spansmall><Psmall>$$$</Psmall></Pbold></div>}
+							{name} {edit ? <div><Link to="/edit-review"><i class="fas fa-edit"></i></Link><Button color="light"><i class="fas fa-trash"></i></Button></div> : <div><Pbold>Avocado Toast<Spansmall> <i class="fas fa-star text-warning"></i> 4.50</Spansmall><Psmall>$$$</Psmall></Pbold></div>}
 						</Media>
 							<p>
 							The restaurant is gorgeous and located approximately 15 minutes from the quaint, little town of Brux. 

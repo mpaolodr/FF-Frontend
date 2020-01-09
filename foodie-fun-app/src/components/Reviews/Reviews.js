@@ -4,6 +4,7 @@ import { ReviewTable } from ".";
 
 // MARK: -- Third Party Libraries
 import { Container, Row, Col, Table, Card, Badge } from "reactstrap";
+import { ReactStars } from ".";
 
 export const Reviews = () => {
 
@@ -26,16 +27,16 @@ export const Reviews = () => {
 				<Table borderless>
 					<tbody>
 						<tr>
-							<th scope="row">Mon</th>
-							<td><Badge color="light">9AM-4PM</Badge></td>
+							<th scope="row">Food</th>
+							<td><ReactStars count={5} size={24} value={1.5} edit={false}/></td>
 						</tr>
 						<tr>
-							<th scope="row">Tue</th>
-							<td><Badge color="light">9AM-4PM</Badge></td>
+							<th scope="row">Drinks</th>
+							<td><ReactStars count={5} size={24} value={4} edit={false}/></td>
 						</tr>
 						<tr>
-							<th scope="row">Wed</th>
-							<td><Badge color="warning">9AM-4PM</Badge></td>
+							<th scope="row">Service</th>
+							<td><ReactStars count={5} size={24} value={5} edit={false}/></td>
 						</tr>
 					</tbody>
 				</Table>
@@ -44,20 +45,16 @@ export const Reviews = () => {
 				<Table borderless>
 					<tbody>
 						<tr>
-							<th scope="row">Thu</th>
-							<td><Badge color="light">9AM-4PM</Badge></td>
+							<th scope="row">Decor</th>
+							<td><ReactStars count={5} size={24} value={4.5} edit={false}/></td>
 						</tr>
 						<tr>
-							<th scope="row">Fri</th>
-							<td><Badge color="ligth">9AM-4PM</Badge></td>
+							<th scope="row">Cleaniness</th>
+							<td><ReactStars count={5} size={24} value={3} edit={false}/></td>
 						</tr>
 						<tr>
-							<th scope="row">Sat</th>
-							<td><Badge color="light">9AM-4PM</Badge></td>
-						</tr>
-						<tr>
-							<th scope="row">Sun</th>
-							<td><Badge color="light">9AM-4PM</Badge></td>
+							<th scope="row">Vibe</th>
+							<td><ReactStars count={5} size={24} value={2} edit={false}/></td>
 						</tr>
 					</tbody>
 				</Table>

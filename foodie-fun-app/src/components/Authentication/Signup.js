@@ -9,7 +9,7 @@ import * as yup from "yup";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import axios from "axios";
-import { authAxios } from "../../utils/authAxios";
+//import { authAxios } from "../../utils/authAxios";
 import swal from "sweetalert";
 
 // MARK: -- assets
@@ -214,14 +214,14 @@ export const Signup = props => {
     setLoaderState({ loading: true });
 
     const user = {
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      location: data.location
+      "username": data.username,
+      "password": data.password,
+      "email": data.email,
+      "location": data.location
     };
 
-    authAxios()
-      .post("/auth/register", user)
+    axios
+      .post("https://cors-anywhere.herokuapp.com/https://rayfoodiefun.herokuapp.com/api/auth/register", user)
       .then(res => {
         //put this setLoader in here so it disables loader when there's a response
         setLoaderState({ loading: false });
@@ -231,6 +231,7 @@ export const Signup = props => {
           icon: "success",
           button: "Let's Sign In"
         });
+        console.log(res);
         props.history.push("/login");
       })
       .catch(err => {
