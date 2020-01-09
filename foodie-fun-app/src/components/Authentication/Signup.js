@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { API_KEY } from "../../config";
+
+// MARK: -- Third Party Libraries
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
+import { Button } from "reactstrap";
+import axios from "axios";
+
+// MARK: -- assets
 import backgroundImg from "./assets/signup-bg-2.svg";
 
 //loader component
 import Loader from "./Loader";
 
-//styled componentns
+//styled components
 const FormContainer = styled.div`
   background: url(${backgroundImg}) no-repeat center;
   background-size: cover;
@@ -113,6 +121,36 @@ export const Signup = () => {
   //user
   const [user, setUser] = useState({});
 
+  //location
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [local, setLocal] = useState("");
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
+  
+  useEffect(() => {
+    console.log(local)
+    if(local === "") {
+      axios.get(url)
+           .then(response => {
+              setLocal(response.data.results[0].address_components[3].long_name)
+           })
+           .catch(error => console.warn("error", error))
+    }
+  }, [url, local])
+
+  const getLocation = () => {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates);
+    } else {
+      alert("Geolocation is not supported in this browsers");
+    }
+  }
+
+  const getCoordinates = (position) => {
+    setLongitude(position.coords.longitude);
+    setLatitude(position.coords.latitude);
+  }
+
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
     return yup.mixed().test({
@@ -144,8 +182,12 @@ export const Signup = () => {
 
     password: yup
       .string()
-      .min(10, "Password not long enough")
+      .min(6, "Password not long enough")
       .required(),
+
+    location: yup
+      .string()
+      .required("Please allow for location services to be on"),
 
     confirmPassword: yup
       .string()
@@ -154,12 +196,13 @@ export const Signup = () => {
   });
 
   //useForm
-  const { handleSubmit, errors, register, reset } = useForm({
+  const { handleSubmit, errors, register, reset, setValue } = useForm({
     validationSchema: schema,
     defaultValues: {
       email: "",
       username: "",
       password: "",
+      location: "",
       confirmPassword: ""
     }
   });
@@ -183,6 +226,7 @@ export const Signup = () => {
 
   return (
     <FormContainer>
+      {errors.location && <p>{errors.location.message}</p>}
       {loaderState.loading ? (
         <Loader />
       ) : (
@@ -219,6 +263,15 @@ export const Signup = () => {
               <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
             )}
           </IndField>
+
+          <IndField>
+            <Label htmlFor="location">Location</Label>
+            <InputField type="text" name="location" ref={register} value={local} />
+            {errors.location && (
+              <ErrorMessage>{errors.location.message}</ErrorMessage>
+            )}
+          </IndField>
+          <Button onClick={getLocation}><i class="fas fa-location-arrow"></i></Button>
 
           <SubmitBtn type="submit">Submit</SubmitBtn>
           <BottomText>

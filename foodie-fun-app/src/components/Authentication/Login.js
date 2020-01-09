@@ -85,6 +85,11 @@ const SubmitButton = styled.button`
   }
 `;
 
+const BottomText = styled.p`
+  color: white;
+  font-size: 0.8rem;
+`;
+
 //component
 export const Login = () => {
   const [login, setLogin] = useState({});
@@ -154,22 +159,31 @@ export const Login = () => {
                 }
               })}
             />
-            {errors.password && errors.password.type == "required" && (
+            {errors.password && errors.password.type === "required" && (
               <Error>Please enter a password</Error>
             )}
-            {errors.password && errors.password.type == "maxLength" && (
+            {errors.password && errors.password.type === "maxLength" && (
               <Error>Password is too long</Error>
             )}
-            {errors.password && errors.password.type == "minLength" && (
+            {errors.password && errors.password.type === "minLength" && (
               <Error>Password is too short</Error>
             )}
           </InputWrapper>
 
           <SubmitButton type="submit">Log in</SubmitButton>
-          <h2>
-            <Text>Don't have an account?</Text>
-          </h2>
-          <Link to="/signup">Create an account</Link>
+
+          <BottomText>
+            Don't Have an account?{" "}
+            <Link
+              style={{
+                color: "#ecb847",
+                fontSize: "0.8rem"
+              }}
+              to="/signup"
+            >
+              Create Account
+            </Link>
+          </BottomText>
         </FormWrapper>
       )}
     </Container>
