@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { Button } from "reactstrap";
 import axios from "axios";
 import { authAxios } from "../../utils/authAxios";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 // MARK: -- assets
 import backgroundImg from "./assets/signup-bg-2.svg";
@@ -117,7 +117,7 @@ const BottomText = styled.p`
   font-size: 0.8rem;
 `;
 
-export const Signup = (props) => {
+export const Signup = props => {
   //loader animation
   const [loaderState, setLoaderState] = useState({ loading: false });
 
@@ -213,26 +213,42 @@ export const Signup = (props) => {
     e.preventDefault();
     setLoaderState({ loading: true });
 
-    const user = { 
+    const user = {
       username: data.username,
       email: data.email,
       password: data.password,
       location: data.location
     };
 
-    authAxios().post("/auth/register", user)
-               .then(res => {
-                  swal({ title: "Success!", text: "You're registered", icon: "success", button: "Let's Sign In" });
-                  props.history.push("/login")
-                })
-               .catch(err => { 
-                  swal({ title: "Bummer!", text: "Registration Error", icon: "warning", dangerMode: true, button: "OK" });
-                  console.log(err)
-               })
+    authAxios()
+      .post("/auth/register", user)
+      .then(res => {
+        //put this setLoader in here so it disables loader when there's a response
+        setLoaderState({ loading: false });
+        swal({
+          title: "Success!",
+          text: "You're registered",
+          icon: "success",
+          button: "Let's Sign In"
+        });
+        props.history.push("/login");
+      })
+      .catch(err => {
+        //put this setLoader in here so it disables loader when there's a response
+        setLoaderState({ loading: false });
+        swal({
+          title: "Bummer!",
+          text: "Registration Error",
+          icon: "warning",
+          dangerMode: true,
+          button: "OK"
+        });
+        console.log(err);
+      });
 
-    setTimeout(() => {
-      setLoaderState({ loading: false });
-    }, 2000);
+    // setTimeout(() => {
+    //   setLoaderState({ loading: false });
+    // }, 2000);
 
     reset();
   };
