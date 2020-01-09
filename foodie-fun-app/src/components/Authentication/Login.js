@@ -119,6 +119,7 @@ export const Login = (props) => {
                 swal({title: "🙌", text: "Success", icon: "success"});
                 console.log(res)
                 localStorage.setItem("foodieToken", res.data.token);
+                localStorage.setItem("foodie_id", res.data.user.id)
                 props.history.push("/explore");
              })
              .catch(err => {

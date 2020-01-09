@@ -5,10 +5,12 @@ import React, { useState } from "react";
 export const authAxios = () => {
 	const token = window.localStorage.getItem("foodieToken");
 	return axios.create({
-		baseURL: 'https://cors-anywhere.herokuapp.com/https://rayfoodiefun.herokuapp.com/api',
+		baseURL: 'https://rayfoodiefun.herokuapp.com/api',
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: token,
 		},
 	});
 };
+
+// https://cors-anywhere.herokuapp.com/
