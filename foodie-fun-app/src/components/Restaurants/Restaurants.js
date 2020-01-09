@@ -7,10 +7,15 @@ import { Container, Button, Badge } from "reactstrap";
 import { Restaurant, RestaurantCard } from ".";
 import { FilterSearch } from "../FilterSearch";
 
+import { connect } from "react-redux";
+import { getRestaurants } from "../../actions";
+
 // MARK: -- Fake Data
 //import { data } from "../../restaurantData.js";
 
-export const Restaurants = () => {
+export const Restaurants = (props) => {
+
+	console.log(props);
 
 	// const today = new Date();
 	// const currentDay = (number) => {

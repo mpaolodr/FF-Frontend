@@ -17,7 +17,7 @@ export const restaurantReducer = (state = initialState, action) => {
 			}
 		case POST_RESTAURANT_SUCCESS:
 			return {
-				...state,
+				restaurants: action.payload,
 				isFetching: false,
 				restaurants: [...state.restaurants, action.payload]
 			}

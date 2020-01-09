@@ -76,7 +76,7 @@ export const Navigation = () => {
 				<Route path="/edit-restaurant" render={props => {return <EditRestaurant {...props} />}}/>
 				<Route path="/edit-review" render={props => {return <EditReview {...props} />}}/>
 				<Route path="/edit-rating" render={props => {return <EditRating {...props} />}}/>
-				<Route exact path="/explore" render={props => {return <Restaurants {...props} />}}/>
+				<Route exact path="/explore" component={Restaurants} />}}/>
 				<Route path="/explore/1" render={props => { return <Restaurant {...props} /> }} />
 				<Route path="/login" render={props => {return <Login {...props} />}}/>
 				<Route path="/signup" render={props => {return <Signup {...props} />}}/>
