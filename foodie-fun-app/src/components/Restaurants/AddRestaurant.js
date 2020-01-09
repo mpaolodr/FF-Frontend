@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { FETCH_RESTAURANT_START, POST_RESTAURANT_FAILURE } from "../../actions/index"
+import { POST_RESTAURANT_START, POST_RESTAURANT_FAILURE, POST_RESTAURANT_SUCCESS } from "../../actions/index"
 import { connect, useSelector, useDispatch } from "react-redux";
-import { postRestaurant } from "../../actions";
 import { authAxios } from "../../utils/authAxios";
 
 // import { restaurantReducer } from "../../reducers/restaurantReducer";
@@ -18,9 +17,10 @@ export const AddRestaurant = (props) => {
 	const addRestaurant = e => {
 		e.preventDefault()
 		console.log(restaurant)
-		dispatch({ type: FETCH_RESTAURANT_START })
+		dispatch({ type: POST_RESTAURANT_START })
 		authAxios().post("/restaurants", restaurant)
 		.then(res => {
+			dispatch({ type: POST_RESTAURANT_SUCCESS, payload: res.data})
 			console.log(res,"testing res")
 		})
 		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
