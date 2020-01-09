@@ -255,7 +255,6 @@ export const Signup = props => {
 
   return (
     <FormContainer>
-      {errors.location && <p>{errors.location.message}</p>}
       {loaderState.loading ? (
         <Loader />
       ) : (
