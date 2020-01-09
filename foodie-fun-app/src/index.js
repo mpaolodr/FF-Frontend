@@ -8,12 +8,11 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { applyMiddleware, createStore, compose } from "redux";
+import { applyMiddleware, createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 
 //MARK: -- REDUCERS
-import { combineReducers, createStore } from 'redux'
 import {
 	ratingReducer,
 	restaurantReducer,
