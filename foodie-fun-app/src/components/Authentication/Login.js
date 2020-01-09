@@ -5,6 +5,9 @@ import { Button } from "reactstrap";
 
 import styled from "styled-components";
 import Loader from "./Loader";
+import swal from 'sweetalert';
+
+import { authAxios } from "../../utils/authAxios";
 
 //styled components
 const Container = styled.div`
@@ -91,11 +94,15 @@ const BottomText = styled.p`
 `;
 
 //component
-export const Login = () => {
-  const [login, setLogin] = useState({});
+export const Login = (props) => {
   const [loaderState, setLoaderState] = useState({ loading: false });
 
-  const { register, handleSubmit, reset, errors } = useForm();
+  const { register, handleSubmit, reset, errors } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    }
+  });
 
   const onSubmit = (values, e) => {
     e.preventDefault();
@@ -105,7 +112,22 @@ export const Login = () => {
       setLoaderState({ loading: false });
     }, 2000);
 
-    setLogin(values);
+    const user = values;
+
+    authAxios().post("/auth/login", user)
+             .then(res => {
+                swal({title: "🙌", text: "Success", icon: "success"});
+                console.log(res)
+                localStorage.setItem("foodieToken", res.data.token);
+                props.history.push("/explore");
+             })
+             .catch(err => {
+              swal({title: "Error!", text: "We couldn't log you in. Please check that your username and password are correct.", icon: "warning", dangerMode: true});
+              console.log(err)
+             })
+
+    console.log(values);
+
     e.target.reset();
   };
 
@@ -117,26 +139,23 @@ export const Login = () => {
         <FormWrapper onSubmit={handleSubmit(onSubmit)}>
           <HeaderWrapper>Log In</HeaderWrapper>
           <InputWrapper>
-            <label htmlFor="email">
-              <Text>Email</Text>
+            <label htmlFor="username">
+              <Text>username</Text>
             </label>
             <br></br>
             <Inputs
               type="text"
-              placeholder="Enter email"
-              name="email"
+              placeholder="Enter username"
+              name="username"
               ref={register({
                 required: true,
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                }
               })}
             />
-            {errors.email && errors.email.type === "required" && (
-              <Error>Please enter an email</Error>
+            {errors.username && errors.username.type === "required" && (
+              <Error>Please enter an username</Error>
             )}
-            {errors.email && errors.email.type === "pattern" && (
-              <Error>Invalid Email</Error>
+            {errors.username && errors.username.type === "pattern" && (
+              <Error>Invalid username</Error>
             )}
           </InputWrapper>
 

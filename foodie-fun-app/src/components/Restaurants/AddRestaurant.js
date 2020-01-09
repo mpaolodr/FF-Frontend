@@ -3,9 +3,12 @@ import React, { useState } from "react";
 
 export const AddRestaurant = () => {
 
-	const [addRestaurant, setAddRestaurant] = useState({resturant: "", cuisine: "", location: "", hours: "" })
+	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
+	const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
-	// const addRestaurant = e => {
+	const addRestaurant = e => {
+		console.log(restaurant)
+	}
 	// 	axios.post("api goes here")
 	// 	.then(res => {
 	// 		console.log(res.data)
@@ -15,7 +18,38 @@ export const AddRestaurant = () => {
 
 	const handleChange = e => {
 		e.preventDefault()
-		setAddRestaurant({resturant: "", cuisine: "", location: "", hours: "" })
+		setRestaurant({...restaurant, [e.target.name]: e.target.value})
+	}
+
+	const handleHourChange = (event) => {
+		// need to map through the array to find if the index and event.target.name are equal
+		// if so, return `event.target.name` to effect
+		const h = restaurant.hours.map((hour, index) => {
+			if( index === Number(event.target.name) ) {
+				return event.target.value
+			} else {
+				return hour
+			}
+		});
+		setRestaurant({...restaurant, hours: h})
+	}
+
+	const handleHourAdd = (event) => {
+		event.preventDefault();
+		console.log("add");
+		const h = restaurant.hours.map(hour => { return hour })
+		setRestaurant({...restaurant, hours: [...h, ""]})
+	}
+
+	const handleHourRemove = (event) => {
+		event.preventDefault();
+		console.log("remove");
+		const h = restaurant.hours.filter( (hour, index) => {
+			if (Number(event.target.name) !== index) { return hour } else {
+				return
+			}
+		})
+		setRestaurant({...restaurant, hours: [...h]})
 	}
 
 	return (
@@ -26,12 +60,13 @@ export const AddRestaurant = () => {
 			<p>Add a name of Restaurant</p>
 			<input 
 			placeholder="Restaurant Name"
-			value={addRestaurant.resturant}
+			name="restaurant"
+			value={restaurant.restaurant}
 			onChange={handleChange}
 			/>
 
 			<p>Add type of cuisine</p>
-			<select type="select" name="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} value={addRestaurant.cuisine}
+			<select type="select" name="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} name="cuisine" value={restaurant.cuisine}
 			onChange={handleChange}>
 	          <option value="" selected>Select Cuisine</option>
 	          <option value="pizza">pizza</option>
@@ -42,18 +77,30 @@ export const AddRestaurant = () => {
 	        </select>
 
 			<p>Location</p>
-			<input 
+			<input
 			placeholder="Location"
-			value={addRestaurant.location}
-			onChange={handleChange}/>
-
-			<p>Hours of operation</p>
-			<input 
-			placeholder="Hours of Operation"
-			value={addRestaurant.hours}
+			name="location"
+			value={restaurant.location}
 			onChange={handleChange}
 			/>
 
+			<p>Hours of operation</p>
+			{restaurant.hours === undefined ? <p>Nothing here</p> : restaurant.hours.map((hour, index) => (
+				<div>
+				<label>{week[index]}</label>
+				<input 
+				key={index}
+				type="text"
+				name={index}
+				placeholder="Hours of Operation"
+				value={restaurant.hours[index]}
+				onChange={handleHourChange}
+				/>
+				<button name={index} onClick={handleHourRemove}>remove</button>
+				</div>
+			))
+			}
+			<button onClick={handleHourAdd}>Add Hours</button>
 			<button type="submit">Add Restaurant</button>
 			</form>
 		</div>

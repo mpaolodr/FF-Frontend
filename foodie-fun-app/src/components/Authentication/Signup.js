@@ -9,6 +9,8 @@ import * as yup from "yup";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import axios from "axios";
+import { authAxios } from "../../utils/authAxios";
+import swal from 'sweetalert';
 
 // MARK: -- assets
 import backgroundImg from "./assets/signup-bg-2.svg";
@@ -115,41 +117,9 @@ const BottomText = styled.p`
   font-size: 0.8rem;
 `;
 
-export const Signup = () => {
+export const Signup = (props) => {
   //loader animation
   const [loaderState, setLoaderState] = useState({ loading: false });
-  //user
-  const [user, setUser] = useState({});
-
-  //location
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [local, setLocal] = useState("");
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
-  
-  useEffect(() => {
-    console.log(local)
-    if(local === "") {
-      axios.get(url)
-           .then(response => {
-              setLocal(response.data.results[0].address_components[3].long_name)
-           })
-           .catch(error => console.warn("error", error))
-    }
-  }, [url, local])
-
-  const getLocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoordinates);
-    } else {
-      alert("Geolocation is not supported in this browsers");
-    }
-  }
-
-  const getCoordinates = (position) => {
-    setLongitude(position.coords.longitude);
-    setLatitude(position.coords.latitude);
-  }
 
   //function to check if passwords match
   const equalTo = (ref: any, msg: any) => {
@@ -183,7 +153,7 @@ export const Signup = () => {
     password: yup
       .string()
       .min(6, "Password not long enough")
-      .required(),
+      .required("This field is required"),
 
     location: yup
       .string()
@@ -196,7 +166,7 @@ export const Signup = () => {
   });
 
   //useForm
-  const { handleSubmit, errors, register, reset, setValue } = useForm({
+  const { handleSubmit, errors, register, reset } = useForm({
     validationSchema: schema,
     defaultValues: {
       email: "",
@@ -207,20 +177,63 @@ export const Signup = () => {
     }
   });
 
+  //location
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [local, setLocal] = useState("");
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
+
+  useEffect(() => {
+    console.log(local);
+    if (local === "") {
+      axios
+        .get(url)
+        .then(response => {
+          setLocal(response.data.results[0].address_components[3].long_name);
+        })
+        .catch(error => console.warn("error", error));
+    }
+  }, [url, local]);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates);
+    } else {
+      alert("Geolocation is not supported in this browsers");
+    }
+  };
+
+  const getCoordinates = position => {
+    setLongitude(position.coords.longitude);
+    setLatitude(position.coords.latitude);
+  };
+
   //submit handler
   const onSubmit = (data, e) => {
     e.preventDefault();
     setLoaderState({ loading: true });
 
+    const user = { 
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      location: data.location
+    };
+
+    authAxios().post("/auth/register", user)
+               .then(res => {
+                  swal({ title: "Success!", text: "You're registered", icon: "success", button: "Let's Sign In" });
+                  props.history.push("/login")
+                })
+               .catch(err => { 
+                  swal({ title: "Bummer!", text: "Registration Error", icon: "warning", dangerMode: true, button: "OK" });
+                  console.log(err)
+               })
+
     setTimeout(() => {
       setLoaderState({ loading: false });
     }, 2000);
 
-    setUser(data);
-    console.log(data);
-
-    //this is where axios call would be made
-    console.log(data);
     reset();
   };
 
@@ -266,12 +279,24 @@ export const Signup = () => {
 
           <IndField>
             <Label htmlFor="location">Location</Label>
-            <InputField type="text" name="location" ref={register} value={local} />
-            {errors.location && (
-              <ErrorMessage>{errors.location.message}</ErrorMessage>
-            )}
+            <div className="btn-location">
+              <InputField
+                type="text"
+                name="location"
+                ref={register}
+                value={local}
+              />
+              {errors.location && (
+                <ErrorMessage>{errors.location.message}</ErrorMessage>
+              )}
+              <Button onClick={getLocation}>
+                <i class="fas fa-location-arrow"></i>
+              </Button>
+            </div>
           </IndField>
-          <Button onClick={getLocation}><i class="fas fa-location-arrow"></i></Button>
+          {/* <Button onClick={getLocation}>
+            <i class="fas fa-location-arrow"></i>
+          </Button> */}
 
           <SubmitBtn type="submit">Submit</SubmitBtn>
           <BottomText>

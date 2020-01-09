@@ -3,7 +3,7 @@ import React from "react";
 import { ReviewTable } from "../Reviews";
 
 // MARK: -- Third Party Packages
-import { Button, Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 export const Profile = (props) => {
 

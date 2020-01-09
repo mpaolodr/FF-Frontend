@@ -50,3 +50,8 @@
   align-items: center;
   width: 100px;
 }
+
+.btn-location {
+  width: 100%;
+  display: flex;
+}
