@@ -122,15 +122,15 @@ export const Signup = props => {
   const [loaderState, setLoaderState] = useState({ loading: false });
 
   //function to check if passwords match
-  const equalTo = (ref: any, msg: any) => {
+  const equalTo = (ref, msg) => {
     return yup.mixed().test({
       name: "equalTo",
       exclusive: false,
-      message: msg || "${path} must be the same as ${reference}",
+      message: msg,
       params: {
         reference: ref.path
       },
-      test: function(value: any) {
+      test: function(value) {
         return value === this.resolve(ref);
       }
     });
