@@ -53,4 +53,4 @@ export {
 	postRating,
 	putRating,
 	deleteRating,
-} from "./reviewActions";
+} from "./ratingActions";
