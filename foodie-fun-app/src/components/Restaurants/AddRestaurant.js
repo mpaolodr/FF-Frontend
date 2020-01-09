@@ -1,55 +1,34 @@
 import React, { useState } from "react";
+import { FETCH_RESTAURANT_START, POST_RESTAURANT_FAILURE } from "../../actions/index"
+import { connect, useSelector, useDispatch } from "react-redux";
+import { postRestaurant } from "../../actions";
+import { authAxios } from "../../utils/authAxios";
+
+// import { restaurantReducer } from "../../reducers/restaurantReducer";
 //import axios from "axios";
 
-export const AddRestaurant = () => {
+export const AddRestaurant = (props) => {
+	console.log(props)
+	const testing = useSelector(state => state.restaurantReducer)
+	console.log(testing,"testing")
+	const dispatch = useDispatch()
 
-	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
-	const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+	const [restaurant, setRestaurant] = useState({name: "", cuisine: "", location: "", hours: "", review: "", img: null, foodie_id: localStorage.getItem("foodie_id") })
 
 	const addRestaurant = e => {
+		e.preventDefault()
 		console.log(restaurant)
+		dispatch({ type: FETCH_RESTAURANT_START })
+		authAxios().post("/restaurants", restaurant)
+		.then(res => {
+			console.log(res,"testing res")
+		})
+		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
 	}
-	// 	axios.post("api goes here")
-	// 	.then(res => {
-	// 		console.log(res.data)
-	// 	})
-	// 	.catch(err => console.log(err,"an error occured with your post request review the function addRestaurant"))
-	// }
 
 	const handleChange = e => {
 		e.preventDefault()
 		setRestaurant({...restaurant, [e.target.name]: e.target.value})
-	}
-
-	const handleHourChange = (event) => {
-		// need to map through the array to find if the index and event.target.name are equal
-		// if so, return `event.target.name` to effect
-		const h = restaurant.hours.map((hour, index) => {
-			if( index === Number(event.target.name) ) {
-				return event.target.value
-			} else {
-				return hour
-			}
-		});
-		setRestaurant({...restaurant, hours: h})
-	}
-
-	const handleHourAdd = (event) => {
-		event.preventDefault();
-		console.log("add");
-		const h = restaurant.hours.map(hour => { return hour })
-		setRestaurant({...restaurant, hours: [...h, ""]})
-	}
-
-	const handleHourRemove = (event) => {
-		event.preventDefault();
-		console.log("remove");
-		const h = restaurant.hours.filter( (hour, index) => {
-			if (Number(event.target.name) !== index) { return hour } else {
-				return
-			}
-		})
-		setRestaurant({...restaurant, hours: [...h]})
 	}
 
 	return (
@@ -60,8 +39,8 @@ export const AddRestaurant = () => {
 			<p>Add a name of Restaurant</p>
 			<input 
 			placeholder="Restaurant Name"
-			name="restaurant"
-			value={restaurant.restaurant}
+			name="name"
+			value={restaurant.name}
 			onChange={handleChange}
 			/>
 
@@ -84,26 +63,26 @@ export const AddRestaurant = () => {
 			onChange={handleChange}
 			/>
 
-			<p>Hours of operation</p>
-			{restaurant.hours === undefined ? <p>Nothing here</p> : restaurant.hours.map((hour, index) => (
-				<div>
-				<label>{week[index]}</label>
-				<input 
-				key={index}
-				type="text"
-				name={index}
-				placeholder="Hours of Operation"
-				value={restaurant.hours[index]}
-				onChange={handleHourChange}
-				/>
-				<button name={index} onClick={handleHourRemove}>remove</button>
-				</div>
-			))
-			}
-			<button onClick={handleHourAdd}>Add Hours</button>
+			<p>Todays hours</p>
+			<input
+			placeholder="Hours"
+			name="hours"
+			value={restaurant.hour}
+			onChange={handleChange}
+			/>
 			<button type="submit">Add Restaurant</button>
 			</form>
 		</div>
 	);
 };
 
+
+// const mapStateToProps = (state) => {
+// 	return { 
+// 		state: state.restaurantReducer
+// 	}
+// }
+
+// export default connect(mapStateToProps,{
+// 	postRestaurant
+// })(AddRestaurant)

@@ -1,10 +1,10 @@
-import { FETCH_RATING_START, FETCH_RATING_SUCCESS, FETCH_RATING_FAILURE } from "../actions";
+import { FETCH_RATING_START, FETCH_RATING_SUCCESS, FETCH_RATING_FAILURE, POST_RATING_START } from "../actions";
 
 
 const initialState = {
 	rating: null,
 	isFetching: false,
-	error: ""
+	error: "",
 }
 
 
