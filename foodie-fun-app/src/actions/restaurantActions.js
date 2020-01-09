@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authAxios } from "../utils/authAxios";
 
 // MARK: -- Custom State Machine Logic
 // MARK: -- GET REQUEST
@@ -23,13 +24,11 @@ export const getRestaurants = () => dispatch => {
 	dispatch({ type: FETCH_RESTAURANT_START });
 	// REMINDER: -- auth axios later
 	// authAxios.get("/restaurants");
-	axios.get("https://rayfoodiefun.herokuapp.com/api/restaurants")
+	authAxios().get("/restaurants")
 		 .then(res => { 
-		 	console.log(res);
 		 	dispatch({ type: FETCH_RESTAURANT_SUCCESS, payload: res.data })
 		 })
 		 .catch(err => {
-		 	console.log(err);
 		 	dispatch({ type: FETCH_RESTAURANT_FAILURE, payload: err.response.statusText })
 		 })
 

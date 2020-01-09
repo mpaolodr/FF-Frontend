@@ -17,8 +17,9 @@ export const restaurantReducer = (state = initialState, action) => {
 			}
 		case FETCH_RESTAURANT_SUCCESS:
 			return {
-				...state,
+				restaurants: action.payload,
 				isFetching: false,
+				error: ''
 			}
 		case FETCH_RESTAURANT_FAILURE:
 			return {

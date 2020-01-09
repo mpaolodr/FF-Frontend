@@ -11,6 +11,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { applyMiddleware, createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 //MARK: -- REDUCERS
 import {
@@ -25,7 +26,7 @@ const rootReducer = combineReducers({
 	reviewReducer
 })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 ReactDOM.render(
