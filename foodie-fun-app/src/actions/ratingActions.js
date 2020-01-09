@@ -17,7 +17,7 @@ export const DELETE_RATING_START = "DELETE_RATING_START";
 export const DELETE_RATING_SUCCESS = "DELETE_RATING_SUCCESS";
 export const DELETE_RATING_FAILURE = "DELETE_RATING_FAILURE";
 
-export const getRating = (rating) => {
+export const getRating = (rating) => dispatch => {
 	dispatch({ type: FETCH_RATING_START })
 	axios.get("https://rayfoodiefun.herokuapp.com/api/ratings")
 		 .then(res => { 
@@ -30,7 +30,7 @@ export const getRating = (rating) => {
 		 })
 };
 
-export const postRating = (rating) => {
+export const postRating = (rating) => dispatch => {
 	dispatch({ type: POST_RATING_START })
 	axios.post("https://rayfoodiefun.herokuapp.com/api/ratings")
 		 .then(res => {
@@ -43,7 +43,7 @@ export const postRating = (rating) => {
 		 })
 };
 
-export const putRating = (rating) => {
+export const putRating = (rating) => dispatch => {
 	dispatch({ type: PUT_RATING_START })
 	axios.put(`https://rayfoodiefun.herokuapp.com/api/ratings/${rating.id}`, rating)
 		 .then(res => {
@@ -56,7 +56,7 @@ export const putRating = (rating) => {
 		 })
 };
 
-export const deleteRating = (rating) => {
+export const deleteRating = (rating) => dispatch => {
 	dispatch({ type: DELETE_RATING_START })
 	axios.delete(`https://rayfoodiefun.herokuapp.com/api/ratings/${rating.id}`)
 		 .then(res => {

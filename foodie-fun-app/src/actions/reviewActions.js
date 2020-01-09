@@ -29,11 +29,11 @@ export const getReviews = () => dispatch => {
 export const postReview = (review) => dispatch => {
 	dispatch({ type: POST_REVIEW_START })
 	axios.post("https://rayfoodiefun.herokuapp.com/api/reviews", review)
-		 .then(res => { dispatch({ type: POST_REVIEW_SUCCESS, payload: res.data }),
+		 .then(res => { dispatch({ type: POST_REVIEW_SUCCESS, payload: res.data })
 			console.log(res)
 		})
 		 .catch(err => {
-			 dispatch({ type: POST_REVIEW_FAILURE, payload: err.response.statusText}),
+			 dispatch({ type: POST_REVIEW_FAILURE, payload: err.response.statusText})
 			console.log(err)
 		})
 };
@@ -42,11 +42,11 @@ export const putReview = (review) => dispatch => {
 	dispatch({ type: PUT_REVIEW_START })
 	axios.put(`https://rayfoodiefun.herokuapp.com/api/reviews/${review.id}`, review)
 		 .then(res => { 
-			dispatch({ type: PUT_REVIEW_SUCCESS, payload: res.data }),
+			dispatch({ type: PUT_REVIEW_SUCCESS, payload: res.data })
 			console.log(res)
 		})
 		 .catch(err => {
-			 dispatch({ type: PUT_REVIEW_FAILURE, payload: err.response.statusText }),
+			 dispatch({ type: PUT_REVIEW_FAILURE, payload: err.response.statusText })
 			console.log(err)
 		})
 };
@@ -54,13 +54,13 @@ export const putReview = (review) => dispatch => {
 
 export const deleteReview = (review) => dispatch => {
 	dispatch({ type: DELETE_REVIEW_START })
-	axios.delete(`https://rayfoodiefun.herokuapp.com/api/reviews/${review.id}`, review)
+	axios.delete(`https://rayfoodiefun.herokuapp.com/api/reviews/${review.id}`)
 		.then(res => {
-			dispatch({ type:DELETE_REVIEW_SUCCESS, payload: res.data }),
+			dispatch({ type:DELETE_REVIEW_SUCCESS, payload: res.data })
 		console.log(res)
 	})
 		.catch(err => {
-			dispatch({ type: DELETE_REVIEW_FAILURE, payload: err.response.statusText }),
+			dispatch({ type: DELETE_REVIEW_FAILURE, payload: err.response.statusText })
 		console.log(err)
 	})
 }
