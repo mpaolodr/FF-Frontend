@@ -12,15 +12,29 @@ import { applyMiddleware, createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 
+//MARK: -- REDUCERS
+import { combineReducers, createStore } from 'redux'
+import {
+	ratingReducer,
+	restaurantReducer,
+	reviewReducer
+  } from './reducers'
 
-//const store = createStore()
+const rootReducer = combineReducers({
+	ratingReducer,
+	restaurantReducer,
+	reviewReducer
+})
+
+const store = createStore(rootReducer)
 
 
 ReactDOM.render(
-	
+	<Provider store={store}>
 	<Router>
 		<App />
-	</Router>,
+	</Router>
+	</Provider>,
 	 document.getElementById('root')
 );
 
