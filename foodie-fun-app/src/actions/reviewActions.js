@@ -54,7 +54,7 @@ export const putReview = (review) => dispatch => {
 
 export const deleteReview = (review) => dispatch => {
 	dispatch({ type: DELETE_REVIEW_START })
-	axios.delete(`https://rayfoodiefun.herokuapp.com/api/reviews/${review.id}`, review)
+	axios.delete(`https://rayfoodiefun.herokuapp.com/api/reviews/${review.id}`)
 		.then(res => {
 			dispatch({ type:DELETE_REVIEW_SUCCESS, payload: res.data })
 		console.log(res)
