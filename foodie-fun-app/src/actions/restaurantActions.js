@@ -18,8 +18,6 @@ export const DELETE_RESTAURANT_START = "DELETE_RESTAURANT_START";
 export const DELETE_RESTAURANT_SUCCESS = "DELETE_RESTAURANT_SUCCESS";
 export const DELETE_RESTAURANT_FAILURE = "DELETE_RESTAURANT_FAILURE";
 
-
-
 // MARK: -- GET
 export const getRestaurants = () => dispatch => {
 	dispatch({ type: FETCH_RESTAURANT_START });
@@ -48,7 +46,7 @@ export const postRestaurant = (restaurant) => dispatch => {
 		 })
 		 .catch(err => {
 		 	console.log(err)
-		 	dispatch({ type: POST_RESTAURANT_FAILURE, payload: restaurant })
+		 	dispatch({ type: POST_RESTAURANT_FAILURE, payload: err.response.statusText })
 		 })
 };
 
@@ -63,7 +61,7 @@ export const putRestaurant = (restaurant) => dispatch => {
 		 })
 		 .catch(err => { 
 		 	console.log(err);
-		 	dispatch({ type: PUT_RESTAURANT_FAILURE, payload: restaurant });
+		 	dispatch({ type: PUT_RESTAURANT_FAILURE, payload: err.response.statusText });
 		 })
 };
 
@@ -78,6 +76,6 @@ export const deleteRestaurant = (restaurant) => dispatch => {
 		 })
 		 .catch(err => { 
 		 	console.log(err)
-		 	dispatch({ type: DELETE_RESTAURANT_FAILURE, payload: res.data })
+		 	dispatch({ type: DELETE_RESTAURANT_FAILURE, payload: err.response.statusText })
 		 })
 }
