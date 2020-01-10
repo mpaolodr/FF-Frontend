@@ -2,7 +2,7 @@ import { POST_RESTAURANT_START, POST_RESTAURANT_SUCCESS, POST_RESTAURANT_FAILURE
 
 
 const initialState = {
-	restaurants: [],
+	restaurants: "",
 	isFetching: false,
 	error: ""
 }
@@ -17,7 +17,7 @@ export const restaurantReducer = (state = initialState, action) => {
 			}
 		case POST_RESTAURANT_SUCCESS:
 			return {
-				restaurants: action.payload,
+				...state,
 				isFetching: false,
 				restaurants: [...state.restaurants, action.payload]
 			}

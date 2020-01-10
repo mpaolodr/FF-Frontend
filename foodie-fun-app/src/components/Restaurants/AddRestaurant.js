@@ -7,21 +7,22 @@ import { authAxios } from "../../utils/authAxios";
 //import axios from "axios";
 
 export const AddRestaurant = (props) => {
-	console.log(props)
-	const testing = useSelector(state => state.restaurantReducer)
-	console.log(testing,"testing")
-	const dispatch = useDispatch()
+	console.log(props);
+	const data = useSelector(state => state.restaurantReducer);
+	console.log("data using useSelector", data);
+	const dispatch = useDispatch();
 
 	const [restaurant, setRestaurant] = useState({name: "", cuisine: "", location: "", hours: "", review: "", img: null, foodie_id: localStorage.getItem("foodie_id") })
 
 	const addRestaurant = e => {
 		e.preventDefault()
-		console.log(restaurant)
+		// console.log(restaurant)
 		dispatch({ type: POST_RESTAURANT_START })
 		authAxios().post("/restaurants", restaurant)
 		.then(res => {
 			dispatch({ type: POST_RESTAURANT_SUCCESS, payload: res.data})
 			console.log(res,"testing res")
+			props.history.push("/explore");
 		})
 		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
 	}
