@@ -1,30 +1,20 @@
 import React, { useState } from "react";
-import { POST_RESTAURANT_START, POST_RESTAURANT_FAILURE, POST_RESTAURANT_SUCCESS } from "../../actions/index"
-import { connect, useSelector, useDispatch } from "react-redux";
-import { authAxios } from "../../utils/authAxios";
+import { postRestaurant } from "../../actions";
+import { connect } from "react-redux";
+
 
 // import { restaurantReducer } from "../../reducers/restaurantReducer";
 //import axios from "axios";
 
-export const AddRestaurant = (props) => {
+const AddRestaurant = (props) => {
 	console.log(props);
-	const data = useSelector(state => state.restaurantReducer);
-	console.log("data using useSelector", data);
-	const dispatch = useDispatch();
 
 	const [restaurant, setRestaurant] = useState({name: "", cuisine: "", location: "", hours: "", review: "", img: null, foodie_id: localStorage.getItem("foodie_id") })
 
 	const addRestaurant = e => {
-		e.preventDefault()
-		// console.log(restaurant)
-		dispatch({ type: POST_RESTAURANT_START })
-		authAxios().post("/restaurants", restaurant)
-		.then(res => {
-			dispatch({ type: POST_RESTAURANT_SUCCESS, payload: res.data})
-			//console.log(res,"testing res")
-			props.history.push("/explore");
-		})
-		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
+		e.preventDefault();
+		props.postRestaurant(restaurant);
+		props.history.push("/explore");
 	}
 
 	const handleChange = e => {
@@ -78,12 +68,10 @@ export const AddRestaurant = (props) => {
 };
 
 
-// const mapStateToProps = (state) => {
-// 	return { 
-// 		state: state.restaurantReducer
-// 	}
-// }
+const mapStateToProps = (state) => {
+	return { 
+		state: state
+	}
+}
 
-// export default connect(mapStateToProps,{
-// 	postRestaurant
-// })(AddRestaurant)
+export default connect(mapStateToProps,{ postRestaurant })(AddRestaurant)

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-export const EditRestaurant = () => {
+export const EditRestaurant = (props) => {
 
 	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
-	const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+	
+	console.log(props);
 
 	const editRestaurant = e => {
 		console.log(restaurant)
@@ -84,25 +85,18 @@ export const EditRestaurant = () => {
 			onChange={handleChange}
 			/>
 
-			<p>Edit Hours of operation</p>
-			{restaurant.hours === undefined ? <p>Nothing here</p> : restaurant.hours.map((hour, index) => (
-				<div>
-				<label>{week[index]}</label>
-				<input 
-				key={index}
-				type="text"
-				name={index}
-				placeholder="Hours of Operation"
-				value={restaurant.hours[index]}
-				onChange={handleHourChange}
-				/>
-				<button name={index} onClick={handleHourRemove}>remove</button>
-				</div>
-			))
-			}
-			<button onClick={handleHourAdd}>Add Hours</button>
+			<p>Todays hours</p>
+			<input
+			placeholder="Hours"
+			name="hours"
+			value={restaurant.hour}
+			onChange={handleChange}
+			/>
 			<button type="submit">Update Restaurant</button>
 			</form>
 		</div>
 	);
 };
+
+
+export default EditRestaurant;

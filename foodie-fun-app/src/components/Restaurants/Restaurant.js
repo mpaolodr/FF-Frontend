@@ -7,7 +7,7 @@ import { Reviews } from "../Reviews";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
-export const Restaurant = (props) => {
+const Restaurant = (props) => {
 	return (
 		<Container>
 			<h1>Restaurant Name (Detail Page)</h1>
@@ -23,3 +23,5 @@ export const Restaurant = (props) => {
 		</Container>
 	);
 };
+
+export default Restaurant;
