@@ -41,7 +41,7 @@ export const postRestaurant = (restaurant) => dispatch => {
 	axios.post("https://rayfoodiefun.herokuapp.com/api/restaurants", restaurant)
 		 .then(res =>  {
 		 	console.log(res);
-		 	dispatch({ type: POST_RESTAURANT_SUCCESS, payload: restaurant })
+			 dispatch({ type: POST_RESTAURANT_SUCCESS, payload: restaurant })
 		 })
 		 .catch(err => {
 		 	console.log(err)

@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { authAxios } from "../../utils/authAxios";
+import { connect, useSelector, useDispatch } from "react-redux";
+
+import { PUT_RESTAURANT_START, PUT_RESTAURANT_SUCCESS, PUT_RESTAURANT_FAILURE } from "../../actions";
 
 export const EditRestaurant = () => {
 
-	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
-	const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+	// const data = useSelector(state => state.restaurantReducer);
+	// console.log("data using useSelector in edit restaurant", data);
+	// const dispatch = useDispatch();
 
-	const editRestaurant = e => {
-		console.log(restaurant)
-	}
-	// 	axios.post("api goes here")
+	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: "" })
+	// const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+	// const editRestaurant = e => {
+	// 	e.preventDefault()
+	// 	console.log(restaurant)
+	// 	dispatch({type: PUT_RESTAURANT_START})
+	// 	authAxios.put(`/restaurants/${restaurant.id}`, restaurant)
+
 	// 	.then(res => {
+	// 		dispatchEvent({ type: PUT_RESTAURANT_SUCCESS, payload: res.data})
 	// 		console.log(res.data)
 	// 	})
-	// 	.catch(err => console.log(err,"an error occured with your post request review the function addRestaurant"))
+	// 	.catch(err => dispatch({type: PUT_RESTAURANT_FAILURE, payload: err}))
 	// }
 
 	const handleChange = e => {
@@ -56,7 +67,7 @@ export const EditRestaurant = () => {
 		<div>	
 			<h1>Edit Restaurant</h1>
 
-			<form onSubmit={editRestaurant}>
+			<form>
 			<p>Edit name of Restaurant</p>
 			<input 
 			placeholder="Restaurant Name"
@@ -87,7 +98,7 @@ export const EditRestaurant = () => {
 			<p>Edit Hours of operation</p>
 			{restaurant.hours === undefined ? <p>Nothing here</p> : restaurant.hours.map((hour, index) => (
 				<div>
-				<label>{week[index]}</label>
+				{/* <label>{week[index]}</label> */}
 				<input 
 				key={index}
 				type="text"

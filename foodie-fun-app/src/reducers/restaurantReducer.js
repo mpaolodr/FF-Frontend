@@ -1,4 +1,4 @@
-import { POST_RESTAURANT_START, POST_RESTAURANT_SUCCESS, POST_RESTAURANT_FAILURE } from "../actions";
+import { POST_RESTAURANT_START, POST_RESTAURANT_SUCCESS, POST_RESTAURANT_FAILURE, PUT_RESTAURANT_START, PUT_RESTAURANT_SUCCESS, PUT_RESTAURANT_FAILURE } from "../actions";
 
 
 const initialState = {
@@ -27,6 +27,23 @@ export const restaurantReducer = (state = initialState, action) => {
 				isFetching: false,
 				error: action.payload
 			}
+			case PUT_RESTAURANT_START:
+				return {
+					...state,
+					isFetching: true,
+				}
+			case PUT_RESTAURANT_SUCCESS:
+				return {
+					...state,
+					isFetching:false,
+					restaurants: []
+				}
+				case PUT_RESTAURANT_FAILURE:
+					return {
+						...state,
+						isFetching:false,
+						error: action.payload
+					}
 		default:
 			return state;
 	}

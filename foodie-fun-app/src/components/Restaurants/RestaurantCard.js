@@ -2,6 +2,7 @@ import React from "react";
 
 // MARK: -- bootstrap
 import { Card, CardTitle, CardSubtitle, CardText, CardImg, CardBody, Row, Col, Badge } from "reactstrap";
+import { Restaurants } from "./Restaurants";
 
 export const RestaurantCard = (props) => {
 
@@ -18,12 +19,12 @@ export const RestaurantCard = (props) => {
 				<CardBody>
 					<Row>
 						<Col xs={{ size: 6 }}>
-							<CardTitle><h2>{place.name}</h2></CardTitle>
-							<CardSubtitle>{place.location}</CardSubtitle>
+							<CardTitle><h2>{props.restaurant.name}</h2></CardTitle>
+							<CardSubtitle>{props.restaurant.location}</CardSubtitle>
 						</Col>
 						<Col xs={{ size: 3, offset: 3 }}>
-							<CardText>{place.hours}</CardText>
-							<CardText>{place.cuisine}</CardText>
+							<CardText>{props.restaurant.hours}</CardText>
+							<CardText>{props.restaurant.cuisine}</CardText>
 						</Col>
 					</Row>
 					<Row>

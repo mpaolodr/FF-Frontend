@@ -13,6 +13,7 @@ import { FETCH_RESTAURANT_START, FETCH_RESTAURANT_SUCCESS, FETCH_RESTAURANT_FAIL
 import { getRestaurants } from "../../actions";
 
 import { authAxios } from "../../utils/authAxios";
+import { EditRestaurant } from "./EditRestaurant";
 
 // MARK: -- Fake Data
 //import { data } from "../../restaurantData.js";
@@ -23,6 +24,8 @@ export const Restaurants = (props) => {
 
 	const data = useSelector(state => state.restaurantReducer);
 	const dispatch = useDispatch();
+
+	console.log(data.restaurants,"data res")
 
 	useEffect(() => {
 		if(data.restaurants === "") {
@@ -87,6 +90,14 @@ export const Restaurants = (props) => {
 			</Container>
 			<Container>
 			<p>List all restaurants</p>
+				{ data.restaurants && data.restaurants.map( restaurant => {
+					return (
+						<div>
+						<RestaurantCard key={`${restaurant.id} ${restaurant.name}`} restaurant={restaurant}/>
+						<button onClick={EditRestaurant}>Edit restaurant</button>
+						</div>
+					)
+				})}
 			</Container>
 		</div>
 	);
