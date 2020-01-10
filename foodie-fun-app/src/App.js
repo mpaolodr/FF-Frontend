@@ -41,18 +41,17 @@ function App() {
 			<Navigation />
     		<Switch>
       			<Route exact path="/" component={Signup} />
-				<Route path="/profile" component={Profile} />
-				<Route exact path="/explore" component={Restaurants} />
-				<Route path="/login" component={Login} />
-				<Route path="/add-restaurant" component={AddRestaurant} />
-				<Route path="/add-review" component={AddReview} />
-				<Route path="/add-rating" component={AddRating} />
-				<Route path="/restaurant/:id" component={EditRestaurant} />
-				<Route path="/edit-review" component={EditReview}/>
-				<Route path="/edit-rating" component={EditRating}/>
-				<Route path="/explore/" component={Restaurant} />
-				<Route path="/signup" component={Signup} />
-				<PrivateRoute path="/logout" />
+      			<Route path="/login" component={Login} />
+				<PrivateRoute path="/profile" component={Profile} />
+				<PrivateRoute exact path="/explore" component={Restaurants} />
+				<PrivateRoute path="/add-restaurant" component={AddRestaurant} />
+				<PrivateRoute path="/add-review" component={AddReview} />
+				<PrivateRoute path="/add-rating" component={AddRating} />
+				<PrivateRoute path="/restaurant/:id" component={EditRestaurant} />
+				<PrivateRoute path="/edit-review" component={EditReview}/>
+				<PrivateRoute path="/edit-rating" component={EditRating}/>
+				<PrivateRoute path="/explore/" component={Restaurant} />
+				<PrivateRoute path="/logout" component={Logout} />
 			</Switch>
     		</Router>
     	</div>

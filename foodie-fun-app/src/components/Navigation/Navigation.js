@@ -22,6 +22,10 @@ export const Navigation = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => setIsOpen(!isOpen);
+
+	const loggedIn = () => { return localStorage.getItem("foodieToken") }
+
+	const logout = () => { return localStorage.removeItem("foodieToken") && localStorage.removeItem("foodie_id") }
  
 	return (
 
@@ -36,32 +40,31 @@ export const Navigation = (props) => {
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="ml-auto" navbar>
-						<NavItem>
+						{loggedIn && <NavItem>
 							<RouteLink className="text-dark nav-column" to="/profile">
 							<div><i className="far fa-user-circle"></i></div>Profile
 							</RouteLink>
-						</NavItem>
-						<NavItem>
+						</NavItem>}
+						{loggedIn && <NavItem>
 							<RouteLink className="text-dark nav-column" to="/explore">
 							<div><i className="fas fa-compass"></i></div>Explore
 							</RouteLink>
-							
-						</NavItem>
-						<NavItem>
+						</NavItem>}
+						{loggedIn && <NavItem>
 							<RouteLink className="text-dark nav-column" to="/login">
 							<div><i className="fas fa-sign-in-alt"></i></div>Login
 							</RouteLink>
-						</NavItem>
-						<NavItem>
-							<RouteLink className="text-dark nav-column" to="/signup">
+						</NavItem>}
+						{loggedIn && <NavItem>
+							<RouteLink className="text-dark nav-column" to="/">
 							<div><i className="fas fa-sign"></i><i class="fas fa-arrow-up"></i></div>Sign up
 							</RouteLink>
-						</NavItem>
-						<NavItem>
-							<RouteLink className="text-dark nav-column" to="/logout">
+						</NavItem>}
+						{loggedIn && <NavItem>
+							<RouteLink className="text-dark nav-column" to="/logout" onClick={logout}>
 							<div><i className="fas fa-sign-out-alt"></i></div>Sign out
 							</RouteLink>
-						</NavItem>
+						</NavItem>}
 					</Nav>
 				</Collapse>
 				</Container>

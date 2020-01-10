@@ -36,6 +36,12 @@ export const getRestaurants = () => dispatch => {
 
 };
 
+export const getRestaurant = (id) => dispatch => {
+	authAxios().get(`/restaurants/{id}`)
+			   .then(res => console.log(res))
+			   .catch(err => console.log(err))
+};
+
 export const postRestaurant = (restaurant) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.post("/restaurants");
@@ -51,14 +57,14 @@ export const postRestaurant = (restaurant) => dispatch => {
 		 })
 };
 
-export const putRestaurant = (restaurant) => dispatch => {
+export const putRestaurant = (id, restaurant) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.put("/restaurants");
 	dispatch({ type: PUT_RESTAURANT_START });
-	authAxios().put(`/restaurants/${restaurant.id}`, restaurant)
+	authAxios().put(`/restaurants/${id}`, restaurant)
 		 .then(res => {
 		 	console.log(res);
-		 	dispatch({ type: PUT_RESTAURANT_SUCCESS, payload: restaurant });
+		 	dispatch({ type: PUT_RESTAURANT_SUCCESS, payload: res.data });
 		 })
 		 .catch(err => { 
 		 	console.log(err);
@@ -66,14 +72,14 @@ export const putRestaurant = (restaurant) => dispatch => {
 		 })
 };
 
-export const deleteRestaurant = (restaurant) => dispatch => {
+export const deleteRestaurant = (id) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.get("/restaurants");
-	dispatch({ type: DELETE_RESTAURANT_START });
-	axios.delete(`https://rayfoodiefun.herokuapp.com/api/restaurant/${restaurant.id}`)
+	// dispatch({ type: DELETE_RESTAURANT_START });
+	authAxios().delete(`/restaurant/${id}`)
 		 .then(res => { 
 		 	console.log(res)
-		 	dispatch({ type: DELETE_RESTAURANT_SUCCESS, payload: res.data })
+		 	dispatch({ type: DELETE_RESTAURANT_SUCCESS, payload: id })
 		 })
 		 .catch(err => { 
 		 	console.log(err)

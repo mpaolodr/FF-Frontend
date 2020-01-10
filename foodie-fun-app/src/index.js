@@ -7,9 +7,8 @@ import * as serviceWorker from './serviceWorker';
 // MARK: -- Third party libraries
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { applyMiddleware, createStore, compose } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";

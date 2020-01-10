@@ -6,11 +6,12 @@ export const EditRestaurant = (props) => {
 
 	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
 	
-	console.log(props);
+	console.log("Edit props!", props);
 
 	const editRestaurant = e => {
 		console.log(restaurant)
-		putRestaurant(restaurant);
+		props.putRestaurant(restaurant);
+		props.history.push("/explore");
 	}
 	// 	axios.post("api goes here")
 	// 	.then(res => {

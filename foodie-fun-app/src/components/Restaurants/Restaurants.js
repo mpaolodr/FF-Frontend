@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // MARK: -- Third Party Packages
-import { Link, Route } from "react-router-dom";
-import { Container, Button, Badge } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Container, Button } from "reactstrap";
 
-import { Restaurant } from "./Restaurant";
+
 import { RestaurantCard } from "./RestaurantCard";
-import { FilterSearch } from "../FilterSearch";
 
 import { connect } from "react-redux";
 
-import { getRestaurants } from "../../actions";
-
-import { authAxios } from "../../utils/authAxios";
-
-import { withRouter } from 'react-router-dom';
-
+import { getRestaurants, getRestaurant, deleteRestaurant, putRestaurant } from "../../actions";
 
 export const Restaurants = (props) => {
 
+	console.log(props);
 
 	useEffect(() => {
 		props.getRestaurants();
 	}, [])
+
+
 
 	return (
 		<div>
@@ -35,7 +32,7 @@ export const Restaurants = (props) => {
 			<Container>
 			<p>List all restaurants</p>
 				{props.restaurants.map((obj, index) => (
-					<RestaurantCard key={index} place={obj} />
+					<RestaurantCard key={index} place={obj} get={getRestaurant} del={deleteRestaurant} />
 				))}
 			</Container>
 		</div>
@@ -47,7 +44,7 @@ const mapStateToProps = (state) => {
 	return state;
 }
 
-export default connect(mapStateToProps, { getRestaurants })(Restaurants);
+export default connect(mapStateToProps, { getRestaurants, getRestaurant, deleteRestaurant })(Restaurants);
 
 
 
