@@ -6,7 +6,7 @@ import { Card, CardTitle, CardSubtitle, CardText, CardImg, CardBody, Row, Col, B
 
 export const RestaurantCard = (props) => {
 
-	const { place, get, del } = props;
+	const { place, del } = props;
 	const toLink = `restaurant/${place.id}`
 
 	const onClick = (e) => {

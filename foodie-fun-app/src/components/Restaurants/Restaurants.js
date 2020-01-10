@@ -9,7 +9,7 @@ import { RestaurantCard } from "./RestaurantCard";
 
 import { connect } from "react-redux";
 
-import { getRestaurants, getRestaurant, deleteRestaurant } from "../../actions";
+import { getRestaurants, deleteRestaurant } from "../../actions";
 
 export const Restaurants = (props) => {
 
@@ -30,7 +30,7 @@ export const Restaurants = (props) => {
 			<Container>
 			<p>List all restaurants</p>
 				{props.restaurants.map((obj, index) => (
-					<RestaurantCard key={index} place={obj} get={getRestaurant} del={deleteRestaurant} />
+					<RestaurantCard key={index} place={obj} del={deleteRestaurant} />
 				))}
 			</Container>
 		</div>
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
 	return state;
 }
 
-export default connect(mapStateToProps, { getRestaurants, getRestaurant, deleteRestaurant })(Restaurants);
+export default connect(mapStateToProps, { getRestaurants, deleteRestaurant })(Restaurants);
 
 
 
