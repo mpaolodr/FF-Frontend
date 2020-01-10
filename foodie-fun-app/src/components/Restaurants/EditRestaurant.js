@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import Axios from "axios";
-import { authAxios } from "../../utils/authAxios";
-import { connect, useSelector, useDispatch } from "react-redux";
-
-import { PUT_RESTAURANT_START, PUT_RESTAURANT_SUCCESS, PUT_RESTAURANT_FAILURE } from "../../actions";
+import { connect } from "react-redux";
+import { putRestaurant } from "../../actions";
 
 export const EditRestaurant = (props) => {
 
@@ -11,6 +8,11 @@ export const EditRestaurant = (props) => {
 	
 	console.log(props);
 
+	const editRestaurant = e => {
+		console.log(restaurant)
+		putRestaurant(restaurant);
+	}
+	// 	axios.post("api goes here")
 	// 	.then(res => {
 	// 		dispatchEvent({ type: PUT_RESTAURANT_SUCCESS, payload: res.data})
 	// 		console.log(res.data)
@@ -99,5 +101,8 @@ export const EditRestaurant = (props) => {
 	);
 };
 
+const mapStateToProps = (state) => {
+	return state;
+}
 
-export default EditRestaurant;
+export default connect(mapStateToProps, { putRestaurant } )(EditRestaurant);
