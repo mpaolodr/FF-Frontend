@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import PrivateRoute from "./PrivateRoute";
-import { Signup, Login, Logout } from "../Authentication";
-import { Profile } from "../Profile";
-import { Restaurants, Restaurant, AddRestaurant, EditRestaurant } from "../Restaurants";
-import { AddReview, EditReview } from "../Reviews";
-import { AddRating, EditRating } from "../Rating";
-import { NavLink as RouteLink, Route } from "react-router-dom";
+import { NavLink as RouteLink } from "react-router-dom";
 
 import "../../App.css";
 
@@ -20,7 +14,7 @@ import {
   Container
 } from 'reactstrap';
 
-export const Navigation = () => {
+export const Navigation = (props) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -68,19 +62,6 @@ export const Navigation = () => {
 				</Collapse>
 				</Container>
 			</Navbar>
-				<Route exact path="/" />
-				<Route path="/profile" component={Profile} />
-				<Route path="/add-restaurant" component={AddRestaurant} />
-				<Route path="/add-review" component={AddReview} />
-				<Route path="/add-rating" component={AddRating} />
-				<Route path="/edit-restaurant" render={props => {return <EditRestaurant {...props} />}}/>
-				<Route path="/edit-review" render={props => {return <EditReview {...props} />}}/>
-				<Route path="/edit-rating" render={props => {return <EditRating {...props} />}}/>
-				<Route exact path="/explore" component={Restaurants} />
-				<Route path="/explore/1" render={props => { return <Restaurant {...props} /> }} />
-				<Route path="/login" component={Login} />
-				<Route path="/signup" render={props => {return <Signup {...props} />}}/>
-				<PrivateRoute path="/logout" />
 		</div>
 
 	)

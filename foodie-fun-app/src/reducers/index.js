@@ -1,3 +1,11 @@
-export { restaurantReducer } from "./restaurantReducer";
-export { ratingReducer } from "./ratingReducer";
-export { reviewReducer } from "./reviewReducer";
+import { combineReducers } from "redux";
+
+import { restaurantReducer } from "./restaurantReducer";
+import { ratingReducer } from "./ratingReducer";
+import { reviewReducer } from "./reviewReducer";
+
+export default combineReducers({
+	restaurantReducer,
+	ratingReducer,
+	reviewReducer,
+});
