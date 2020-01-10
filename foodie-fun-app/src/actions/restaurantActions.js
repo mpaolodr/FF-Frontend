@@ -31,7 +31,7 @@ export const getRestaurants = () => dispatch => {
 		 })
 		 .catch(err => {
 		 	console.log(err)
-		 	dispatch({ type: FETCH_RESTAURANT_FAILURE, payload: err.response.statusText })
+		 	dispatch({ type: FETCH_RESTAURANT_FAILURE, payload: err })
 		 })
 
 };
@@ -47,7 +47,7 @@ export const postRestaurant = (restaurant) => dispatch => {
 		 })
 		 .catch(err => {
 		 	console.log(err)
-		 	dispatch({ type: POST_RESTAURANT_FAILURE, payload: err.response.statusText })
+		 	dispatch({ type: POST_RESTAURANT_FAILURE, payload: err })
 		 })
 };
 
@@ -55,14 +55,14 @@ export const putRestaurant = (restaurant) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.put("/restaurants");
 	dispatch({ type: PUT_RESTAURANT_START });
-	axios.put(`https://rayfoodiefun.herokuapp.com/api/restaurant/${restaurant.id}`, restaurant)
+	authAxios().put(`/restaurants/${restaurant.id}`, restaurant)
 		 .then(res => {
 		 	console.log(res);
 		 	dispatch({ type: PUT_RESTAURANT_SUCCESS, payload: restaurant });
 		 })
 		 .catch(err => { 
 		 	console.log(err);
-		 	dispatch({ type: PUT_RESTAURANT_FAILURE, payload: err.response.statusText });
+		 	dispatch({ type: PUT_RESTAURANT_FAILURE, payload: err });
 		 })
 };
 
@@ -77,6 +77,6 @@ export const deleteRestaurant = (restaurant) => dispatch => {
 		 })
 		 .catch(err => { 
 		 	console.log(err)
-		 	dispatch({ type: DELETE_RESTAURANT_FAILURE, payload: err.response.statusText })
+		 	dispatch({ type: DELETE_RESTAURANT_FAILURE, payload: err })
 		 })
 }

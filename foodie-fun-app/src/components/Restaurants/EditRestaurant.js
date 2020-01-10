@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import { connect } from "react-redux";
+import { putRestaurant } from "../../actions";
 
 export const EditRestaurant = (props) => {
 
@@ -9,6 +10,7 @@ export const EditRestaurant = (props) => {
 
 	const editRestaurant = e => {
 		console.log(restaurant)
+		putRestaurant(restaurant);
 	}
 	// 	axios.post("api goes here")
 	// 	.then(res => {
@@ -98,5 +100,8 @@ export const EditRestaurant = (props) => {
 	);
 };
 
+const mapStateToProps = (state) => {
+	return state;
+}
 
-export default EditRestaurant;
+export default connect(mapStateToProps, { putRestaurant } )(EditRestaurant);
