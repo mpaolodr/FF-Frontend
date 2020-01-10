@@ -2,7 +2,7 @@ import { FETCH_REVIEW_START, FETCH_REVIEW_SUCCESS, FETCH_REVIEW_FAILURE } from "
 
 
 const initialState = {
-	reviews: null,
+	reviews: "",
 	isFetching: false,
 	error: ""
 }

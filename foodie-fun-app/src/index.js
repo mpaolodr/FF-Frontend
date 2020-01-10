@@ -6,34 +6,21 @@ import * as serviceWorker from './serviceWorker';
 
 // MARK: -- Third party libraries
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router } from "react-router-dom";
 
-import { applyMiddleware, createStore, compose, combineReducers } from "redux";
+import { applyMiddleware, createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-//MARK: -- REDUCERS
-import {
-	ratingReducer,
-	restaurantReducer,
-	reviewReducer
-  } from './reducers'
-
-const rootReducer = combineReducers({
-	ratingReducer,
-	restaurantReducer,
-	reviewReducer
-});
+import rootReducer from "./reducers";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+//console.log(store.getState())
 
 
 ReactDOM.render(
 	<Provider store={store}>
-	<Router>
 		<App />
-	</Router>
 	</Provider>,
 	 document.getElementById('root')
 );

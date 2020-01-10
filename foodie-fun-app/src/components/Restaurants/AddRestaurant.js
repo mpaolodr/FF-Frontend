@@ -21,7 +21,7 @@ export const AddRestaurant = (props) => {
 		authAxios().post("/restaurants", restaurant)
 		.then(res => {
 			dispatch({ type: POST_RESTAURANT_SUCCESS, payload: res.data})
-			console.log(res,"testing res")
+			//console.log(res,"testing res")
 			props.history.push("/explore");
 		})
 		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
