@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import { 
 	Collapse,
@@ -83,6 +82,7 @@ export const FilterSearch = (props) => {
 	          <option value="mexican">mexican</option>
 	        </Input>
 	        </Col>
+	        <Button>OK</Button>
 	   		</Row>
 	        </Collapse>   
 			{/* {searchResults && searchResults.map( item => (

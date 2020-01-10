@@ -67,7 +67,7 @@ const restaurantReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFetching: false,
-				restaurants: [...state.restaurants]
+				restaurants: action.payload
 			}
 		case PUT_RESTAURANT_FAILURE:
 			return {

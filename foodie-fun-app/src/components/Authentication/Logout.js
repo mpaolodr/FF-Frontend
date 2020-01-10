@@ -2,6 +2,6 @@ import React from "react";
 
 export const Logout = () => {
 	return (
-		<h1>Logout</h1>
-	)
-}
+		<h1>YOU ARE LOGGED OUT</h1>
+	);
+};

@@ -12,6 +12,7 @@ export {
 	DELETE_RESTAURANT_SUCCESS,
 	DELETE_RESTAURANT_FAILURE,
 	getRestaurants,
+	getRestaurant,
 	postRestaurant,
 	putRestaurant,
 	deleteRestaurant,
