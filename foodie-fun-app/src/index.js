@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
 	ratingReducer,
 	restaurantReducer,
 	reviewReducer
-})
+});
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
