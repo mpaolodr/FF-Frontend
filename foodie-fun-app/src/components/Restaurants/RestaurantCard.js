@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { deleteRestaurant } from "../../actions";
 // MARK: -- bootstrap
 import { Card, CardTitle, CardSubtitle, CardText, CardImg, CardBody, Row, Col, Badge, Button } from "reactstrap";
 
-export const RestaurantCard = (props) => {
+const RestaurantCard = (props) => {
 
-	const { place, del } = props;
+	const { place, deleteRestaurant } = props;
 	const toLink = `restaurant/${place.id}`
 
+	//console.log(props);
+
 	const onClick = (e) => {
-		e.preventDefault();
-		del(place);
+		props.deleteRestaurant(place.id)
 	}
 
 	return (
@@ -43,3 +45,9 @@ export const RestaurantCard = (props) => {
 		</Card>
 	);
 };
+
+const mapsStateToProps = (state) => {
+	return state;
+}
+
+export default connect(mapsStateToProps, { deleteRestaurant })(RestaurantCard);

@@ -26,11 +26,11 @@ export const getRestaurants = () => dispatch => {
 	// authAxios.get("/restaurants");
 	authAxios().get("/restaurants")
 		 .then(res => { 
-		 	console.log(res)
+		 	//console.log(res)
 		 	dispatch({ type: FETCH_RESTAURANT_SUCCESS, payload: res.data })
 		 })
 		 .catch(err => {
-		 	console.log(err)
+		 	//console.log(err)
 		 	dispatch({ type: FETCH_RESTAURANT_FAILURE, payload: err })
 		 })
 
@@ -72,14 +72,14 @@ export const putRestaurant = (restaurant) => dispatch => {
 		 })
 };
 
-export const deleteRestaurant = (restaurant) => dispatch => {
+export const deleteRestaurant = (id) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.get("/restaurants");
 	dispatch({ type: DELETE_RESTAURANT_START });
-	authAxios().delete(`/restaurant/${restaurant.id}`)
+	authAxios().delete(`/restaurants/${id}`)
 		 .then(res => { 
 		 	console.log(res)
-		 	dispatch({ type: DELETE_RESTAURANT_SUCCESS, payload: res.data })
+		 	dispatch({ type: DELETE_RESTAURANT_SUCCESS, payload: id })
 		 })
 		 .catch(err => { 
 		 	console.log(err)
