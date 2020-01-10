@@ -26,9 +26,11 @@ export const getRestaurants = () => dispatch => {
 	// authAxios.get("/restaurants");
 	authAxios().get("/restaurants")
 		 .then(res => { 
+		 	console.log(res)
 		 	dispatch({ type: FETCH_RESTAURANT_SUCCESS, payload: res.data })
 		 })
 		 .catch(err => {
+		 	console.log(err)
 		 	dispatch({ type: FETCH_RESTAURANT_FAILURE, payload: err.response.statusText })
 		 })
 
@@ -38,7 +40,7 @@ export const postRestaurant = (restaurant) => dispatch => {
 	// REMINDER: -- auth axios later
 	// authAxios.post("/restaurants");
 	dispatch({ type: POST_RESTAURANT_START });
-	axios.post("https://rayfoodiefun.herokuapp.com/api/restaurants", restaurant)
+	authAxios().post("/restaurants", restaurant)
 		 .then(res =>  {
 		 	console.log(res);
 		 	dispatch({ type: POST_RESTAURANT_SUCCESS, payload: restaurant })

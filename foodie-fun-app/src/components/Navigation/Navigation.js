@@ -63,6 +63,5 @@ export const Navigation = (props) => {
 				</Container>
 			</Navbar>
 		</div>
-
 	)
 }

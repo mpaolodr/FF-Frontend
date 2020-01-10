@@ -4,7 +4,14 @@ import { Route, Switch, NavLink as RouteLink } from "react-router-dom";
 import PrivateRoute from "./components/Navigation/PrivateRoute";
 import { Signup, Login, Logout } from "./components/Authentication";
 import { Profile } from "./components/Profile";
-import { Restaurants, Restaurant, AddRestaurant, EditRestaurant } from "./components/Restaurants";
+
+import Restaurants from "./components/Restaurants/Restaurants";
+import AddRestaurant from "./components/Restaurants/AddRestaurant";
+import Restaurant from "./components/Restaurants/Restaurant";
+import EditRestaurant from "./components/Restaurants/EditRestaurant";
+
+import { Navigation } from "./components/Navigation";
+
 import { AddReview, EditReview } from "./components/Reviews";
 import { AddRating, EditRating } from "./components/Rating";
 
@@ -31,19 +38,20 @@ function App() {
   return (
   		<div>
 			<Router>
+			<Navigation />
     		<Switch>
       			<Route exact path="/" component={Signup} />
 				<Route path="/profile" component={Profile} />
+				<Route exact path="/explore" component={Restaurants} />
+				<Route path="/login" component={Login} />
 				<Route path="/add-restaurant" component={AddRestaurant} />
 				<Route path="/add-review" component={AddReview} />
 				<Route path="/add-rating" component={AddRating} />
-				<Route path="/edit-restaurant" component={EditRestaurant} />
+				<Route path="/restaurant/:id" component={EditRestaurant} />
 				<Route path="/edit-review" component={EditReview}/>
 				<Route path="/edit-rating" component={EditRating}/>
-				<Route exact path="/explore" component={Restaurants} />
-				<Route path="/explore/:id" component={Restaurant} />
-				<Route path="/login" component={Login} />
-				//<Route path="/signup" component={Signup} />
+				<Route path="/explore/" component={Restaurant} />
+				<Route path="/signup" component={Signup} />
 				<PrivateRoute path="/logout" />
 			</Switch>
     		</Router>
