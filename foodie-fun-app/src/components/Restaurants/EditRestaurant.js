@@ -5,20 +5,11 @@ import { connect, useSelector, useDispatch } from "react-redux";
 
 import { PUT_RESTAURANT_START, PUT_RESTAURANT_SUCCESS, PUT_RESTAURANT_FAILURE } from "../../actions";
 
-export const EditRestaurant = () => {
+export const EditRestaurant = (props) => {
 
-	// const data = useSelector(state => state.restaurantReducer);
-	// console.log("data using useSelector in edit restaurant", data);
-	// const dispatch = useDispatch();
-
-	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: "" })
-	// const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-
-	// const editRestaurant = e => {
-	// 	e.preventDefault()
-	// 	console.log(restaurant)
-	// 	dispatch({type: PUT_RESTAURANT_START})
-	// 	authAxios.put(`/restaurants/${restaurant.id}`, restaurant)
+	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
+	
+	console.log(props);
 
 	// 	.then(res => {
 	// 		dispatchEvent({ type: PUT_RESTAURANT_SUCCESS, payload: res.data})
@@ -95,25 +86,18 @@ export const EditRestaurant = () => {
 			onChange={handleChange}
 			/>
 
-			<p>Edit Hours of operation</p>
-			{restaurant.hours === undefined ? <p>Nothing here</p> : restaurant.hours.map((hour, index) => (
-				<div>
-				{/* <label>{week[index]}</label> */}
-				<input 
-				key={index}
-				type="text"
-				name={index}
-				placeholder="Hours of Operation"
-				value={restaurant.hours[index]}
-				onChange={handleHourChange}
-				/>
-				<button name={index} onClick={handleHourRemove}>remove</button>
-				</div>
-			))
-			}
-			<button onClick={handleHourAdd}>Add Hours</button>
+			<p>Todays hours</p>
+			<input
+			placeholder="Hours"
+			name="hours"
+			value={restaurant.hour}
+			onChange={handleChange}
+			/>
 			<button type="submit">Update Restaurant</button>
 			</form>
 		</div>
 	);
 };
+
+
+export default EditRestaurant;

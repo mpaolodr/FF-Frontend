@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as RouteLink } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 
 import "../../App.css";
 
@@ -63,6 +64,5 @@ export const Navigation = (props) => {
 				</Container>
 			</Navbar>
 		</div>
-
 	)
 }

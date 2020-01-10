@@ -1,14 +1,15 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 // MARK: -- bootstrap
-import { Card, CardTitle, CardSubtitle, CardText, CardImg, CardBody, Row, Col, Badge } from "reactstrap";
-import { Restaurants } from "./Restaurants";
+import { Card, CardTitle, CardSubtitle, CardText, CardImg, CardBody, Row, Col, Badge, Button } from "reactstrap";
 
 export const RestaurantCard = (props) => {
 
 	const { place } = props;
 
 	console.log("Card", place);
+
+	const toLink = `restaurant/${place.id}`
 
 	return (
 		<Card>
@@ -30,6 +31,8 @@ export const RestaurantCard = (props) => {
 					<Row>
 						<Col xs={{ size: 2, offset: 9 }}>
 							<CardText><i class="fas fa-star text-warning"></i>0</CardText>
+							<Link to={toLink}><Button color="" outline><i class="fas fa-edit"></i></Button></Link>
+							<Button color="light"><i class="fas fa-trash"></i></Button>
 						</Col>
 					</Row>
 				</CardBody>

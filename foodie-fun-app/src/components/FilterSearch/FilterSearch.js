@@ -88,7 +88,6 @@ export const FilterSearch = (props) => {
 			{/* {searchResults && searchResults.map( item => (
 				<div>
 					<h4>{item.restaurant_name}</h4>
-
 				</div>
 			))} */}
 		</div>
