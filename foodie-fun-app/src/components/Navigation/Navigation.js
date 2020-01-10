@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink as RouteLink } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import PrivateRoute from "./PrivateRoute";
+import { Restaurants } from "../Restaurants/Restaurants";
 import "../../App.css";
 
 // MARK: -- Bootstrap
@@ -13,6 +15,7 @@ import {
   NavItem,
   Container
 } from 'reactstrap';
+
 
 export const Navigation = (props) => {
 
@@ -42,6 +45,7 @@ export const Navigation = (props) => {
 							<RouteLink className="text-dark nav-column" to="/explore">
 							<div><i className="fas fa-compass"></i></div>Explore
 							</RouteLink>
+							
 						</NavItem>
 						<NavItem>
 							<RouteLink className="text-dark nav-column" to="/login">
