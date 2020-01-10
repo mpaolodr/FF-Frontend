@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 import { Container, Button } from "reactstrap";
 
 
-import { RestaurantCard } from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 
 import { connect } from "react-redux";
 
-import { getRestaurants, deleteRestaurant } from "../../actions";
+import { getRestaurants } from "../../actions";
 
 export const Restaurants = (props) => {
 
-	console.log(props);
+	// console.log(props);
 
 	useEffect(() => {
 		props.getRestaurants();
@@ -30,7 +30,7 @@ export const Restaurants = (props) => {
 			<Container>
 			<p>List all restaurants</p>
 				{props.restaurants.map((obj, index) => (
-					<RestaurantCard key={index} place={obj} del={deleteRestaurant} />
+					<RestaurantCard key={index} place={obj} />
 				))}
 			</Container>
 		</div>
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
 	return state;
 }
 
-export default connect(mapStateToProps, { getRestaurants, deleteRestaurant })(Restaurants);
+export default connect(mapStateToProps, { getRestaurants })(Restaurants);
 
 
 

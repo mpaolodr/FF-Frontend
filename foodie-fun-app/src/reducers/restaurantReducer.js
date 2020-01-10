@@ -81,10 +81,11 @@ const restaurantReducer = (state = initialState, action) => {
 				isFetching: true,
 			}
 		case DELETE_RESTAURANT_SUCCESS:
+			const filtered = state.restaurants.filter(restaurant => { return restaurant.id !== action.payload })
 			return {
 				...state,
 				isFetching: false,
-				restaurants: [...state.restaurants]
+				restaurants: filtered
 			}
 		case DELETE_RESTAURANT_FAILURE:
 			return {
