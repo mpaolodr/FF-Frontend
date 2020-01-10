@@ -21,7 +21,8 @@ export const AddRestaurant = (props) => {
 		authAxios().post("/restaurants", restaurant)
 		.then(res => {
 			dispatch({ type: POST_RESTAURANT_SUCCESS, payload: res.data})
-			console.log(res,"testing res")
+			//console.log(res,"testing res")
+			props.history.push("/explore");
 		})
 		.catch(err => dispatch({ type: POST_RESTAURANT_FAILURE, payload: err}))
 	}
@@ -45,7 +46,7 @@ export const AddRestaurant = (props) => {
 			/>
 
 			<p>Add type of cuisine</p>
-			<select type="select" name="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} name="cuisine" value={restaurant.cuisine}
+			<select type="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} name="cuisine" value={restaurant.cuisine}
 			onChange={handleChange}>
 	          <option value="" selected>Select Cuisine</option>
 	          <option value="pizza">pizza</option>

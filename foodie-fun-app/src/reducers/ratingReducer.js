@@ -2,7 +2,7 @@ import { FETCH_RATING_START, FETCH_RATING_SUCCESS, FETCH_RATING_FAILURE, POST_RA
 
 
 const initialState = {
-	rating: null,
+	rating: "",
 	isFetching: false,
 	error: "",
 }
