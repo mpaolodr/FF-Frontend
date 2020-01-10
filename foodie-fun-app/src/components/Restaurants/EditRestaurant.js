@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { putRestaurant } from "../../actions";
+import { putRestaurant, getRestaurant } from "../../actions";
 
 export const EditRestaurant = (props) => {
 
-	const [restaurant, setRestaurant] = useState({restaurant: "", cuisine: "", location: "", hours: [] })
+	const [restaurant, setRestaurant] = useState({id: "", name: "", cuisine: "", location: "", hours: "", review: "", img: null, foodie_id: localStorage.getItem("foodie_id")})
 	
-	console.log("Edit props!", props);
+	//console.log("Edit props!", props);
+
+	const filterID = props.restaurants.filter(res => res.id == props.match.params.id)[0]
+	
+	console.log(filterID);
 
 	const editRestaurant = e => {
-		console.log(restaurant)
 		props.putRestaurant(restaurant);
 		props.history.push("/explore");
 	}
-	// 	axios.post("api goes here")
-	// 	.then(res => {
-	// 		console.log(res.data)
-	// 	})
-	// 	.catch(err => console.log(err,"an error occured with your post request review the function addRestaurant"))
-	// }
+
+	useEffect(() => {
+		setRestaurant({id: filterID.id, name: filterID.name, cuisine: filterID.cuisine, location: filterID.location, hours: filterID.hours, review: filterID.review, img: filterID.img, foodie_id: filterID.foodie_id});
+	}, [])
 
 	const handleChange = e => {
 		e.preventDefault()
@@ -64,13 +65,13 @@ export const EditRestaurant = (props) => {
 			<p>Edit name of Restaurant</p>
 			<input 
 			placeholder="Restaurant Name"
-			name="restaurant"
-			value={restaurant.restaurant}
+			name="name"
+			value={restaurant.name}
 			onChange={handleChange}
 			/>
 
 			<p>Edit type of cuisine</p>
-			<select type="select" name="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} name="cuisine" value={restaurant.cuisine}
+			<select type="select" id="selectCategory" style={{fontFamily: 'FontAwesome'}} name="cuisine" value={restaurant.cuisine}
 			onChange={handleChange}>
 	          <option value="" selected>Select Cuisine</option>
 	          <option value="pizza">pizza</option>
@@ -92,7 +93,7 @@ export const EditRestaurant = (props) => {
 			<input
 			placeholder="Hours"
 			name="hours"
-			value={restaurant.hour}
+			value={restaurant.hours}
 			onChange={handleChange}
 			/>
 			<button type="submit">Update Restaurant</button>
@@ -105,4 +106,4 @@ const mapStateToProps = (state) => {
 	return state;
 }
 
-export default connect(mapStateToProps, { putRestaurant } )(EditRestaurant);
+export default connect(mapStateToProps, { putRestaurant, getRestaurant } )(EditRestaurant);
