@@ -64,10 +64,15 @@ const restaurantReducer = (state = initialState, action) => {
 				error: action.payload
 			}
 		case PUT_RESTAURANT_SUCCESS:
+			// MARK: -- try .map and check id
 			return {
 				...state,
 				isFetching: false,
-				restaurants: [...state.restaurants, action.payload]
+				restaurants: [...state.restaurants.filter((el) => el.id !== action.payload.id), action.payload].sort((a, b) => {
+					if (a.id < b.id) { return -1; }
+					if (a.id > b.id) { return 1; }
+					return 0;
+				})
 			}
 		case PUT_RESTAURANT_FAILURE:
 			return {
