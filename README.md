@@ -1,6 +1,6 @@
-## FoodieFun App
+## FoodieFun II App
 
-## <br/>
+<br/>
 
 ### Description
 
@@ -23,7 +23,9 @@
 3. Users can add a review to any restaurants available in the database OR add a restaurant if it doesn't exist
 4. Users can add a review of a specific menu item at a restaurant
 
-## <br/>
+<br/>
+
+---
 
 ### Status
 
@@ -31,6 +33,8 @@
 
 - Completed
 - Not deployed
+
+<br/>
 
 ---
 
@@ -41,7 +45,9 @@
 - React I Developer
   - implemented "sign-up" and "add review" forms with validations
 
-## <br/>
+<br/>
+
+---
 
 ### Tech / Framework
 
@@ -51,7 +57,9 @@
 - GSAP for loader animation
 - Styled Components for component styling
 
-## <br/>
+<br/>
+
+---
 
 ### How to use it
 
@@ -61,7 +69,9 @@
 2. Run `yarn` to install all dependencies
 3. Run `yarn start`
 
-## <br/>
+<br/>
+
+---
 
 ### Plans for Future Development
 
